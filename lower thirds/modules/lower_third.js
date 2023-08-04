@@ -93,19 +93,6 @@ const LowerThird = {
 
     return {...storables, ...props};
   },
-  computed: {
-    slotTooltips() {
-      return Object.values(this.slotNames.value)
-                   .map((name, index) => name !== '' || this.slotInfos.value[index] !== '')
-                   .map((isStored, index) => {
-                      if (isStored) {
-                        return `<p>${this.slotNames.value[index]}<br>${this.slotInfos.value[index]}<hr><p>Click and hold to delete.</p>`;
-                      } else {
-                        return '<p>Empty. Click to save.</p>';
-                      }
-                   });
-    }
-  },
   mounted() {
     const initInterval = setInterval(function() {
       if (!this.logoSrc.value) {
@@ -185,36 +172,24 @@ const LowerThird = {
       this.isDefaultLogo.value = true;
       this.$emit('resetLogo');
     },
-    slotHandlerDown(index) {
-      clearTimeout(this.slotTimeout);
-      this.slotTimeout = setTimeout(() => {
-        if (this.slotIsStored(index)){
-          this.slotIsDelete[index] = true;
-        }
-      }, 600);
-    },
-    slotHandlerUp(index) {
-      clearTimeout(this.slotTimeout);
-      // store Slot
-      if (!this.slotIsDelete[index] && !this.slotIsStored(index)) {
-        this.slotNames.value[index] = this.name.value;
-        this.slotInfos.value[index] = this.info.value;
-        this.slotLogos.value[index] = this.isDefaultLogo.value ? '' : this.logoSrc.value;
-        this.slotIndex = index;
-      // load Slot
-      } else if (!this.slotIsDelete[index]) {
-        this.loadSlot(index);
-
-      // delete Slot
-      } else {
-        this.slotNames.value[index] = '';
-        this.slotInfos.value[index] = '';
-        this.slotLogos.value[index] = '';
-        this.slotIsDelete[index] = false;
-      }
+    updateSlotName(index) {
       this.slotNames.update();
+
+      if (this.slotIndex == index) {
+        this.loadSlot(index);
+      }
+    },
+    updateSlotInfo(index) {
       this.slotInfos.update();
-      this.slotLogos.update();
+
+      if (this.slotIndex == index) {
+        this.loadSlot(index);
+      }
+    },
+    checkActive(index) {
+      if (this.slotIsActive(index) && this.slotIndex < 0) {
+        this.slotIndex = index;
+      }
     },
     slotIsActive(index) {
       const logoVal = this.isDefaultLogo ? '' : this.logoSrc.value;
@@ -231,7 +206,7 @@ const LowerThird = {
     loadSlot(index) {
       this.slotIndex = index;
       this.name.value = this.slotNames.value[index];
-      this.info.name = this.slotInfos.value[index];
+      this.info.value = this.slotInfos.value[index];
       this.isDefaultLogo.value = this.slotLogos.value[index] == '';
 
       if (!this.isDefaultLogo.value) {
