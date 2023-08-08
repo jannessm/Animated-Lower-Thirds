@@ -12,7 +12,7 @@
 		<script src="../common/js/vue.js"></script>
 		<script>
 			let hotKeys;
-			const DEFAULT_LOGOS = Array.from({length: 10}, () => '../logos/logo.png');
+			const DEFAULT_LOGOS = ['../logos/logo.png'];
 			const THEME_OPTIONS = ['acri', 'dark', 'rachni'];
 			const DEFAULT_FONTS = {
 				'sans-serif': ['Open Sans', 'Poppins', 'Raleway'],
@@ -90,11 +90,6 @@
 						   @open-logo="openLogo"
 						   @fonts-changed="updateFonts"
 						   @send-font="sendFont"></main-settings>
-
-			<div id="lt-btns">
-				<div class="btn icon icon-minus icon-btn" @click="removeLT" v-if="lts.value.length > 1"></div>
-				<div class="btn icon icon-plus icon-btn" @click="addLT" v-if="lts.value.length < 10"></div>
-			</div>
 			
 			<div id="sortable">
 				<lower-third v-for="index in lts.value"
@@ -106,12 +101,12 @@
 							 ref="lt"
 							 @switch-changed="checkSwitches"
 							 @open-logo="openLogo"
-							 @reset-logo="checkLogos"
-							 @style-changed="send"
+							 @check-logos="checkLogos"
+							 @style-changed="sendStyleUpdate"
 							 @slot-changed="sendSlotUpdate"></lower-third>
 			</div>
 
-			<image-selector ref="imageSelector" @default-changed="checkLogos" @logo-changed="updateIsDefault"></image-selector>
+			<image-selector ref="imageSelector" @default-changed="checkLogos"></image-selector>
 
 			<div id="export-data" class="center hide" >
 				<div class="export-data-bg" onclick="okExportPopup()"></div>
@@ -237,7 +232,7 @@
 									</ul>
 								</div>
 								<div class="logos-options">
-									<div class="settings-title">Default Logos</div>
+									<div class="settings-title">Default Logo</div>
 									<div class="settings-inputs">
 										<div :id="`alt-${id}-default-logos`" v-for="(logoSrc, id) in defaultLogos.value" class="logo-container default" @click="openLogo(id)">
 											<div class="logo-numbers">{{id + 1}}</div>
@@ -432,10 +427,10 @@
 						</div>
 						<div class="first-edit-container">
 							<div class ="logo-container" @click="openLogo()" v-show="enabledLogo.value && style.value !== 2">
-								<img class="logo-preview" :src="logoSrc.value">
+								<img class="logo-preview" :src="logoSrc">
 							</div>
 							<div class="textfields-container">
-								<input type="text" :id="`alt-${index}-name`" placeholder="Name" tabindex="4" v-model="name.value" @change="$emit('styleChanged');">
+								<input type="text" :id="`alt-${index}-name`" placeholder="Name" tabindex="4" v-model="slotNames.value[slotIndex.value]">
 								<div :id="`alt-${index}-name-appearance`">
 									<label :id="`alt-${index}-name-uppercase`" class="config-btn small">
 										<input type="checkbox" v-model="nameTransform.value" @change="$emit('styleChanged');">
@@ -451,7 +446,7 @@
 									</label>
 									<input :id="`alt-${index}-name-color`" :data-jscolor="JSON.stringify(jscolorConfig)" v-model="nameColor.value" @change="$emit('styleChanged');">
 								</div>
-								<input type="text" :id="`alt-${index}-info`" placeholder="Info" tabindex="4" v-model="info.value" @change="$emit('styleChanged');">
+								<input type="text" :id="`alt-${index}-info`" placeholder="Info" tabindex="4" v-model="slotInfos.value[slotIndex.value]">
 								<div :id="`alt-${index}-info-appearance`">
 									<label :id="`alt-${index}-info-uppercase`" class="config-btn small">
 										<input type="checkbox" v-model="infoTransform.value" @change="$emit('styleChanged');">
@@ -508,10 +503,10 @@
 							
 							<ul>
 								<li v-for="index in 10" @click="loadSlot(index - 1)"
-									:class="{delete: slotIsDelete[index - 1], 'active-slot': slotIsActive(index - 1), stored: slotIsStored(index - 1)}">
+									:class="{delete: slotIsDelete[index - 1], 'active-slot': slotIndex.value == index - 1, stored: slotIsStored(index - 1)}">
 									<div class="slot-number">{{index}}</div>
-									<input @click.stop="checkActive(index - 1)" @input="updateSlotName(index - 1)" v-model="slotNames.value[index - 1]">
-									<input @click.stop="checkActive(index - 1)" @input="updateSlotInfo(index - 1)" v-model="slotInfos.value[index - 1]">
+									<input @input="updateSlotName(index - 1)" v-model="slotNames.value[index - 1]">
+									<input @input="updateSlotInfo(index - 1)" v-model="slotInfos.value[index - 1]">
 								</li>
 							</ul>
 						</div>

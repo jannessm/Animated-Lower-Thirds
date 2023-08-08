@@ -11,6 +11,7 @@ const LowerThird = {
       enabledPreview: ref(false),
       switchLeft: ref(false),
       hiddenSlotNumbers: ref(false),
+      defaultLogoSrc: ref('../logos/logo.png'),
       
       nameClicks: ref(0),
       nameIsEditable: ref(false),
@@ -22,13 +23,13 @@ const LowerThird = {
 
       slotTimeout: ref(),
       slotIsDelete: ref(Array.from({length: 10}, () => false)),
-      slotIndex: ref(-1),
 
       jscolorConfig: ref(JSCOLOR_CONFIG),
       storables: [],
     };
 
     const storables = {
+      slotIndex: [`alt2-${args.index}-active-slot`, 0],
       title: [`alt2-${args.index}-title`, `Lower Third ${args.index + 1}`],
       style: [`alt2-${args.index}-style`, 1],
       autoTrigger: [`alt2-${args.index}-auto-trigger`, false],
@@ -51,8 +52,6 @@ const LowerThird = {
       
       enabledLogo: [`alt2-${args.index}-logo`, true],
       logoSize: [`alt2-${args.index}-logo-size`, 0],
-      isDefaultLogo: [`alt2-${args.index}-default-logo`, true],
-      logoSrc: [`alt2-${args.index}-logo-src`, undefined],
       
       shadows: [`alt2-${args.index}-shadows`, false],
       shadowAmount: [`alt2-${args.index}-shadow-amount`, 5],
@@ -68,13 +67,11 @@ const LowerThird = {
       bordersColor1: [`alt2-${args.index}-borders-color-1`, '#D54141'],
       bordersColor2: [`alt2-${args.index}-borders-color-2`, '#222222'],
 
-      name: [`alt2-${args.index}-name`, ''],
       nameTransform: [`alt2-${args.index}-name-transform`, true],  // uppercase | normal
       nameBold: [`alt2-${args.index}-name-bold`, true],            // lighter | bold
       nameItalic: [`alt2-${args.index}-name-italic`, false],       // normal | italic
       nameColor: [`alt2-${args.index}-name-color`, '#F2F2F2'],
 
-      info: [`alt2-${args.index}-info`, ''],
       infoTransform: [`alt2-${args.index}-info-transform`, true],
       infoBold: [`alt2-${args.index}-info-bold`, true],
       infoItalic: [`alt2-${args.index}-info-italic`, false],
@@ -93,15 +90,15 @@ const LowerThird = {
 
     return {...storables, ...props};
   },
+  computed: {
+    isDefaultLogo() {
+      return !this.slotLogos.value[this.slotIndex.value] || this.slotLogos.value[this.slotIndex.value] == this.defaultLogoSrc;
+    },
+    logoSrc() {
+      return this.isDefaultLogo ? this.defaultLogoSrc : this.slotLogos.value[this.slotIndex.value];
+    }
+  },
   mounted() {
-    const initInterval = setInterval(function() {
-      if (!this.logoSrc.value) {
-        this.logoSrc.loadValue();
-      } else {
-        clearInterval(initInterval);
-      }
-    }.bind(this), 10);
-
     //expand timeSettings if customTimeSettings = true;
     const timeSettings = this.$el.querySelector(`#time-settings-${this.index}`);
     if (!this.customTimeSettings.value) {
@@ -110,9 +107,9 @@ const LowerThird = {
       timeSettings.style.maxHeight = timeSettings.scrollHeight + 'px';
     }
 
-    // this.storables.forEach(key => watch(this[key], () => {}));
-
     jscolor.install();
+
+    this.$emit('checkLogos');
   },
   methods: {
     nameClickHandler() {
@@ -164,57 +161,33 @@ const LowerThird = {
       }
     },
     openLogo() {
-      this.$emit('openLogo', {index: this.index, logoSrc: this.logoSrc});
+      this.$emit('openLogo', {index: this.index, logoSrc: this.slotLogos, slotIndex: this.slotIndex.value});
     },
     clearInputs() {
       this.name.value = '';
       this.info.value = '';
-      this.isDefaultLogo.value = true;
-      this.$emit('resetLogo');
+      this.slotLogos.value[this.slotIndex.value] = '';
     },
     updateSlotName(index) {
       this.slotNames.update();
 
-      if (this.slotIndex == index) {
+      if (this.slotIndex.value == index) {
         this.loadSlot(index);
       }
     },
     updateSlotInfo(index) {
       this.slotInfos.update();
 
-      if (this.slotIndex == index) {
+      if (this.slotIndex.value == index) {
         this.loadSlot(index);
       }
-    },
-    checkActive(index) {
-      if (this.slotIsActive(index) && this.slotIndex < 0) {
-        this.slotIndex = index;
-      }
-    },
-    slotIsActive(index) {
-      const logoVal = this.isDefaultLogo ? '' : this.logoSrc.value;
-  
-      if (this.name.value == '' || this.info.value == '') return false;
-  
-      return this.slotNames.value[index] === this.name.value &&
-             this.slotInfos.value[index] === this.info.value &&
-             this.slotLogos.value[index] === logoVal;
     },
     slotIsStored(index) {
       return this.slotNames.value[index] !== '' || this.slotInfos.value[index] !== '';
     },
     loadSlot(index) {
-      this.slotIndex = index;
-      this.name.value = this.slotNames.value[index];
-      this.info.value = this.slotInfos.value[index];
-      this.isDefaultLogo.value = this.slotLogos.value[index] == '';
+      this.slotIndex.value = index;
 
-      if (!this.isDefaultLogo.value) {
-        this.logoSrc.value = this.slotLogos.value[index];
-      } else {
-        this.$emit('resetLogo');
-      }
-      
       if (this.autoTrigger.value) {
         this.switchOn = true;
         this.$emit('switchChanged');
@@ -232,7 +205,7 @@ const LowerThird = {
       const storedSlots = Array.from({length: 10}, (v, i) => this.slotIsStored(i));
 
       // if slotIndex is -1 search for first active or stored if no active is found
-      if (this.slotIndex == -1) {
+      if (this.slotIndex.value == -1) {
         const firstActive = Array.from({length: 10}, (v, i) => this.slotIsActive(i)).indexOf(true);
         const firstStored = storedSlots.indexOf(true);
         
@@ -242,7 +215,7 @@ const LowerThird = {
           this.loadSlot(storedSlots.indexOf(true, firstActive + 1));
         }
       } else {
-        let nextSlot = storedSlots.indexOf(true, this.slotIndex + 1);
+        let nextSlot = storedSlots.indexOf(true, this.slotIndex.value + 1);
 
         if (nextSlot < 0) {
           // is >= 0 because a slot is loaded :)

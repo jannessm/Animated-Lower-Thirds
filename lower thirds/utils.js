@@ -125,8 +125,6 @@ function migrate(config) {
 
       if (!!parsed) {
         newValues[newKey] = parsed;
-      } else {
-        console.log(newKey, val, parsed)
       }
     
     // lt specific
@@ -143,8 +141,6 @@ function migrate(config) {
   
         if (!!parsed) {
           newValues[newKey] = parsed;
-        } else {
-          console.log(newKey, val, parsed); 
         }
       }
     }

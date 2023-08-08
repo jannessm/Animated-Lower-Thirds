@@ -15,13 +15,14 @@ const ImageSelector = {
     }
   },
   methods: {
-    open(index, logoSrc, defaultArray, isDefault = false) {
+    open(index, logoSrc, defaultArray, isDefault = false, slotIndex = undefined) {
       this.active = true;
       this.index = index;
+      this.slotIndex = slotIndex;
       this.logoSrc = logoSrc;
       this.defaultArray = defaultArray;
       this.isDefault = isDefault;
-      this.previewSrc = isDefault ? defaultArray.value[index] : logoSrc.value;
+      this.previewSrc = isDefault ? defaultArray.value[index] : logoSrc.value[slotIndex];
       this.oldSrc = this.previewSrc;
     },
 
@@ -49,7 +50,7 @@ const ImageSelector = {
 
           this.$emit('defaultChanged');
 				} else {
-          this.logoSrc.value = src;
+          this.logoSrc.value[this.slotIndex] = src;
           this.$emit('logoChanged');
 				}
       } else if (!this.isDefault && !this.previewSrc) {

@@ -104,40 +104,38 @@ const App = {
                   });
         },
         openLogo(args) {
-            let {index, logoSrc, defaultArray, isDefault} = args;
+            let {index, logoSrc, defaultArray, isDefault, slotIndex} = args;
             if (!defaultArray) {
                 defaultArray = this.$refs.mainSettings.defaultLogos;
             }
-            this.$refs.imageSelector.open(index, logoSrc, defaultArray, isDefault);
+            this.$refs.imageSelector.open(index, logoSrc, defaultArray, isDefault, slotIndex);
         },
         checkLogos() {
             const mainSettings = this.$refs.mainSettings;
             Object.values(this.$refs.lt)
                   .forEach((lt, index) => {
-                        if (lt.isDefaultLogo) {
-                            lt.logoSrc.value = mainSettings.defaultLogos.value[index];
-                        }
+                    lt.defaultLogoSrc = mainSettings.defaultLogos.value[index];
                   });
-        },
-        updateIsDefault() {
-            const mainSettings = this.$refs.mainSettings;
-            Object.values(this.$refs.lt)
-                  .forEach((lt, index) => {
-                        lt.isDefaultLogo = lt.logoSrc.value == mainSettings.defaultLogos.value[index];
-                  });
-
         },
         updateFonts() {
             const mainSettings = this.$refs.mainSettings;
             Object.assign(this.fonts, {'custom': mainSettings.customFonts.value.map(val => val.name)});
         },
         bcHandler(msg) {
+            const mainSettings = this.$refs.mainSettings;
             const {timer, switchStates} = msg.data;
 
             Object.values(this.$refs.lt).forEach((lt, index) => {
                 // state changes and lt has autoLoad enabled
                 if (lt.active && !switchStates[index] && lt.autoLoad.value) {
                     lt.slotLoadNext();
+                }
+
+                // one shot
+                const isOneShot = lt.customTimeSettings.value ? lt.oneShot.value : mainSettings.oneShot;
+                if (lt.active && !switchStates[index] && isOneShot) {
+                    lt.switchOn = false;
+                    this.checkSwitches();
                 }
                 
                 lt.activeTimeMonitor = timer[index].activeTimer;
@@ -152,8 +150,11 @@ const App = {
             //      * which switches are on
             //      * which previews are on
             //      * aggregated times (animation, active, inactive)
-            //      * values that are calculated from 
+            //      * values that are calculated from
+            //      * current logo, name, and info
             console.log('send');
+            this.sendStyleUpdate();
+
             const main = this.$refs.mainSettings;
 
             
@@ -188,13 +189,33 @@ const App = {
                                                 return main.inactiveTime.value;
                                             }
                                         });
+            const slotValues = Object.values(this.$refs.lt)
+                .map(lt => {
+                    return {
+                        name: lt.slotNames.value[lt.slotIndex.value],
+                        info: lt.slotInfos.value[lt.slotIndex.value],
+                        logoSrc: lt.logoSrc,
+                    }
+                });
+            
             this.bc.postMessage({
-                switchStates, previewStates, animationTimes, activeTimes, inactiveTimes
+                switchStates, previewStates, animationTimes, activeTimes, inactiveTimes, slotValues
             });
+        },
+        sendStyleUpdate() {
+            this.bc.postMessage({ updateStyles: true });
         },
         sendSlotUpdate() {
             console.log('send slot update');
-            this.bc.postMessage({ updateSlot: true });
+            const slotValues = Object.values(this.$refs.lt)
+                .map(lt => {
+                    return {
+                        name: lt.slotNames.value[lt.slotIndex.value],
+                        info: lt.slotInfos.value[lt.slotIndex.value],
+                        logoSrc: lt.logoSrc,
+                    }
+                });
+            this.bc.postMessage({ updateSlot: true, slotValues });
         },
         sendFont(payload) {
             this.bc.postMessage(payload);
@@ -237,18 +258,5 @@ const App = {
             }
             if (slotsChanged) this.sendSlotUpdate();
         },
-        removeLT() {
-            this.lts.value.pop();
-            this.lts.update();
-        },
-        addLT() {
-            // find next missing id
-            let nextMissing = 0;
-            while (this.lts.value.indexOf(nextMissing) >= 0) {
-                nextMissing++;
-            }
-            
-            this.lts.value = [...this.lts.value, nextMissing];
-        }
     }
 };

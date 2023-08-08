@@ -894,6 +894,7 @@ select[id$=-font] {
 }
 .grid-row,
 .alt-time-options {
+  margin-top: 5px;
   display: inline-flex;
   justify-content: space-between;
   height: 23px;
