@@ -128,7 +128,7 @@
 				<div class="form-input">
 					<div>
 						<h1>Reset all settings</h1>
-						<p>You are going to reset all configuration and memory slots ¿Are you sure?</p>
+						<p>You are going to reset all configuration and memory slots. Are you sure?</p>
 					</div>
 					<div class="reset-btns">
 						<div class="btn-ok-reset" onclick="okResetPopup()">Ok</div>
@@ -540,7 +540,7 @@
 		<script>
 			const app = createApp(App).mount('#alt-panel');
 
-			// //Reload the hotjeys.js file updated by the LUA script
+			//Reload the hotjeys.js file updated by the LUA script
 			setInterval(() => {
 			    const lastChange = JSON.parse(JSON.stringify(hotKeys));
 
@@ -566,7 +566,6 @@
 
 				location.reload();
 			}
-
 			function cancelResetPopup() {
 				document.getElementById("reset-all").classList.add("hide");
 			}
@@ -593,21 +592,21 @@
 						newConfig = JSON.stringify(migrate(JSON.parse(this.result)));
 					}
 
-					writeLocalStorage(this.result);
+					writeLocalStorage(newConfig);
 				};
 				reader.readAsText(file);
 			};
 
 			//Read all localstorage data
 			function getLocalStorage() {
-				var a = {};
-				for (var i = 0; i < localStorage.length; i++) {
-					var k = localStorage.key(i);
-					var v = localStorage.getItem(k);
-					a[k] = v;
+				const a = {};
+				for (const i = 0; i < localStorage.length; i++) {
+					const k = localStorage.key(i);
+					if (k.startsWith("alt2-")) {
+						a[k] = localStorage.getItem(k);
+					}
 				}
-				var s = JSON.stringify(a);
-				return s;
+				return JSON.stringify(a);
 			}
 
 			//Save data to localStorage
@@ -615,11 +614,20 @@
 				var o = JSON.parse(data);
 				for (var property in o) {
 					if (o.hasOwnProperty(property)) {
-						localStorage.setItem(property, o[property]);
+						localStorage.setItem(property, JSON.stringify(o[property]));
 					}
 				}
 				location.reload();
         	}
+
+			function clearLocalStorage() {
+				for (const i = 0; i < localStorage.length; i++) {
+					const k = localStorage.key(i);
+					if (k.startsWith("alt2-")) {
+						localStorage.removeItem(k);
+					}
+				}
+			}
 
 			//Copy all data to clipboard
 			function exportData() {
