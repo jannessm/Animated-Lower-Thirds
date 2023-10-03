@@ -78,6 +78,7 @@ body.browser-source.lower-thirds{
 .main-title{
   width: 275px;
   position: absolute;
+  margin: 8px 0;
 }
 .main-title.switch-left {
   margin-left: 30px;
@@ -165,7 +166,7 @@ body.browser-source.lower-thirds{
   transition: 0.4s;
   position: relative;
   float: right;
-  margin: 0px!important;
+  margin: 8px 0 !important;
 }
 .accordion:after {
   content: "";
@@ -186,7 +187,7 @@ body.browser-source.lower-thirds{
 }
 .hidable {
   max-height: 0;
-  margin-top: 20px;
+  margin-top: 40px;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
 }
@@ -200,10 +201,10 @@ body.browser-source.lower-thirds{
   border-radius: 3px;
   box-sizing: border-box;
   color: var(--main-color);
-  width: 15px;
-  height: 15px;
-  line-height: 11px;
-  font-size: 9px;
+  width: 30px;
+  height: 30px;
+  line-height: 25px;
+  font-size: 18px;
   font-weight: 900;
   margin: 5px 6px;
   text-align: center;
@@ -456,8 +457,8 @@ label[id$=-custom-times] > .icon-btn.active {
 }
 .switch {
   position: relative;
-  width: 21px;
-  height: 13px;
+  width: 42px;
+  height: 26px;
   float: right;
 }
 .switch.switch-left {
@@ -496,10 +497,10 @@ i.fas {
 .slider:before {
   position: absolute;
   content: "";
-  height: 9px;
-  width: 9px;
-  left: 2px;
-  bottom: 2px;
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 4px;
   background-color: var(--main-color);
   -webkit-transition: .4s;
   transition: .4s;
@@ -511,13 +512,13 @@ input:checked + .slider {
   box-shadow: 0 0 1px var(--obs-switch-active-background);
 } */
 input:checked + .slider:before {
-  -webkit-transform: translateX(8px);
-  -ms-transform: translateX(8px);
-  transform: translateX(8px);
+  -webkit-transform: translateX(16px);
+  -ms-transform: translateX(16px);
+  transform: translateX(16px);
   background-color: #fff;
 }
 .slider.round {
-  border-radius: 14px;
+  border-radius: 28px;
 }
 .slider.round:before {
   border-radius: 50%;
@@ -596,7 +597,7 @@ input[id$=-name], input[id$=-info] {
     border: var(--obs-field-border) !important;
     box-sizing: border-box;
     height: 23px !important;
-    width: 155px !important;
+    width: 165px !important;
     display: inline-flex;
     justify-content: flex-end;
 }
@@ -610,7 +611,7 @@ input[id$=-name], input[id$=-info] {
     font-size: 9px;
     text-transform: uppercase;
     font-weight: 600;
-    margin: 4px 0px 4px 0px;
+    margin: 4px 0px;
     cursor: default;
 }
 [id*=-style-color-] + .tool-title {
@@ -1015,7 +1016,7 @@ select[id$=-font] {
   display: inline-block;
   min-width: 230px;
   position: relative;
-  top: 4px;
+  top: 12px;
   left: 4px;
 }
 .renameable input {
