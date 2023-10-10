@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!--Animated Lower Thirds v1.6-->
+		<!--Author: NoeAL-->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title>Lower Thirds Song Panel</title>
+		<link rel="stylesheet" href="../common/css/style-song_panel.css">
+		<link rel="stylesheet" href="../common/css/cp-icons.css">
+		<script src="../common/js/vue.js"></script>
+		<script>
+			const { createApp, ref, reactive, computed, watch } = Vue;
+		</script>
+		<script src="utils.js"></script>
+		<script src="./modules/song_navigator.js"></script>
+		<script src="../common/js/jquery.js"></script>
+		<script src="../common/js/jscolor.js"></script>
+		<script src="../common/js/hotkeys.js"></script>
+		<script src="../common/js/jquery-ui.js"></script>
+	</head>
+	<body class="lower-thirds-panel panel">
+		<div id="alt-panel"></div>
+
+		<template id="app-template">
+			<div id="sortable">
+                <div :class="{'song-part': true, 'active': activePart == index}"
+                     v-for="(part, index) in order"
+                     @click="activePart = index">
+                    {{part}}
+                    
+                    <div class="icon icon-cross" @click="removePart(index)"></div>
+                </div>
+                <div @click="resetOrder()">Reset</div>
+			</div>
+
+            <div id="nav">
+                <div class="icon icon-angle-up" @click="lineUp()"></div>
+                <div class="icon icon-angle-down" @click="lineDown()"></div>
+            </div>
+
+            <div v-if="song.lyrics && activePart > 0" id="lyrics">
+                <div v-for="(l, index) in song.lyrics[order[activePart]]" @click="row = index" :class="{'active': row == index}">{{l}}</div>
+            </div>
+            <div v-if="song.lyrics && activePart == 0" id="lyrics">
+                <div :class="{'active': row == 0}">
+                    {{song.titel}}<br>{{meta}}
+                </div>
+            </div>
+		</template>
+
+		<script>
+			const app = createApp(App).mount('#alt-panel');
+		</script>
+
+	</body>
+</html>

@@ -216,11 +216,15 @@ const App = {
             console.log('send slot update');
             const slotValues = Object.values(this.$refs.lt)
                 .map(lt => {
-                    return {
+                    const value = {
                         name: lt.slotNames.value[lt.slotIndex.value],
-                        info: lt.slotInfos.value[lt.slotIndex.value],
                         logoSrc: lt.logoSrc,
                     }
+
+                    if (lt.slotInfos) {
+                        value['info'] = lt.slotInfos.value[lt.slotIndex.value]
+                    }
+                    return value;
                 });
             this.bc.postMessage({ updateSlot: true, slotValues });
         },

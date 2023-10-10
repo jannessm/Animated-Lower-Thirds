@@ -1,0 +1,78 @@
+:root {
+  --interface-size: 1;
+  --obs-background: #3a393a;
+}
+
+*:focus {outline:none !important}
+
+.panel {
+	background: var(--obs-background);
+	color: var(--main-color);
+	font: normal 14px -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+	max-width:100%;
+  /*transform: scale(var(--interface-size));
+  transform-origin: top;*/
+	margin: 8px 3px 30px;
+  user-select: none;
+  overflow-x: hidden;
+}
+
+.panel::-webkit-scrollbar, .panel textarea::-webkit-scrollbar {
+  width: var(--obs-scrollbar-thickness);
+}
+.panel::-webkit-scrollbar-thumb, .panel textarea::-webkit-scrollbar-thumb {
+	border-radius: var(--obs-scrollbar-radius);
+  border: solid 0px var(--obs-background);
+  background-color: var(--obs-scrollbar-color);
+  margin: 3px 0;
+  padding: 3px 0;
+}
+.panel::-webkit-scrollbar-button, .panel textarea::-webkit-scrollbar-button {
+  height: 3px;
+  display: inline-block;
+}
+
+#sortable {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+}
+
+.song-part {
+  display: flex;
+  border-color: var(--main-color);
+  border-radius: 5px;
+  padding: 4px;
+  justify-content: space-between;
+}
+
+.song-part.active {
+  background-color: var(--main-color);
+  color: black;
+}
+
+#lyrics {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+}
+
+#lyrics div {
+  border: solid 1px var(--main-color);
+  border-radius: 5px;
+  padding: 4px;
+}
+#lyrics .active {
+  background-color: var(--main-color);
+  color: black;
+}
+
+#nav {
+  display: flex;
+  justify-content: space-around;
+}
+#nav .icon {
+  width: 30px !important;
+  height: 30px !important;
+}

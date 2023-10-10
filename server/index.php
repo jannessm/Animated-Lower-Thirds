@@ -8,8 +8,8 @@ header('Content-Type: application/json; charset=utf-8');
 $PATH = dirname(__FILE__);
 
 // get song
-if (isset($_GET['book']) && isset($_GET['name'])) {
-    $data = read_song($PATH . '/' . $_GET['book'] . '/' . $_GET['name'] . '.txt');
+if (isset($_GET['path'])) {
+    $data = read_song($_GET['path']);
 
 // get index
 } else {
@@ -33,17 +33,19 @@ function read_song($path) {
     $meta = get_meta($file_content[0]);
     $text = get_parts($file_content[1]);
 
-    return array_merge($meta, ["text" => $text]);
+    return array_merge($meta, ["lyrics" => $text]);
 }
 
 function get_meta($str) {
-    preg_match_all('/(titel|melodie|text|ccli|satz)\s*:(.*)/i', $str, $matches);
+    preg_match_all('/(titel|melodie|text|ccli|satz|ablauf)\s*:(.*)/i', $str, $matches);
 
     $data = [];
 
     foreach($matches[1] as $id => $match) {
         $data[strtolower(trim($match))] = trim($matches[2][$id]);
     }
+
+    $data['ablauf'] = array_map('trim', explode(',', $data['ablauf']));
 
     return $data;
 }

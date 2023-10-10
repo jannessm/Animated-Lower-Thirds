@@ -150,13 +150,6 @@ const Song = {
     selectSong(index) {
       this.$emit('openSongSelect', {song: this, index});
     },
-    updateSlotName(index) {
-      this.slotNames.update();
-
-      if (this.slotIndex.value == index) {
-        this.loadSlot(index);
-      }
-    },
     slotIsStored(index) {
       return this.slotNames.value[index] !== '';
     },
@@ -168,9 +161,9 @@ const Song = {
         this.$emit('switchChanged');
       }
 
-      if (this.autoLoad.value) {
+      // if (this.autoLoad.value) {
         this.$emit('slotChanged');
-      }
+      // }
     },
     slotLoadNext() {
       // if no slot was loaded and no slot is stored => do nothing
