@@ -235,6 +235,7 @@ const App = {
                     }
                     return value;
                 });
+            
             this.bc.postMessage({ updateSlot: true, slotValues });
         },
         sendFont(payload) {

@@ -755,15 +755,18 @@
 								    @click="loadSlot(index - 1)"
 									:class="{'active-slot': slotIndex.value == index - 1, stored: slotIsStored(index - 1)}">
 									
-									<div class="slot-number">{{index}}</div>
-									
-									<div v-if="!!slotNames.value[index - 1]" class="song-input">{{slotNames.value[index - 1].split('/')[0].toUpperCase()}}</div>
+									<div class="slot-number" style="width: auto;">{{index}}
+										<span v-if="!!slotNames.value[index - 1]"
+											  class="song-input">
+											  {{slotNames.value[index - 1].split('/')[0].toUpperCase()}}
+										</span>
+									</div>
 									
 									<div v-if="!!slotNames.value[index - 1]" class="song-input">{{slotNames.value[index - 1].split('/')[1].replace('.txt', '')}}</div>
 									
-									<div v-else @click.stop="selectSong(index - 1)" class="icon icon-plus"></div>
+									<div v-else @click.stop="selectSong(index - 1)" class="icon icon-plus" style="width: 90%;"></div>
 									
-									<div @click.stop="clearSlot(index - 1)" class="icon icon-cross"></div>
+									<div v-if="slotIsStored(index - 1)" @click.stop="clearSlot(index - 1)" class="icon icon-cross"></div>
 								</li>
 							</ul>
 						</div>

@@ -13,13 +13,11 @@ const App = {
 
     const storables = {
       activeTheme: ['alt2-theme', 'dark'],
-      slotIndex: ['alt2-0-active-slot', 0],
-      slotNames: [`alt2-0-slot-names`, Array.from({length: 10}, () => '')],
     };
 
     // prepare properties
     Object.keys(storables).forEach(key => {
-      storables[key] = reactive(new Storable(...storables[key]));
+      storables[key] = reactive(new Readable(...storables[key]));
     });
 
     $('head').append('<link rel="stylesheet" href="../common/css/themes/' + storables.activeTheme.value + '/theme.css"/>');
@@ -140,10 +138,8 @@ const App = {
     },
     bcHandler(msg) {
       if (msg.data.updateSlot) {
-        this.slotIndex.update();
-        this.slotNames.update();
-
-        this.songPath = this.slotNames.value[this.slotIndex.value];
+        this.songPath = msg.data.slotValues[0]['name'];
+        console.log(this.songPath);
         this.loadSong();
       }
     },
