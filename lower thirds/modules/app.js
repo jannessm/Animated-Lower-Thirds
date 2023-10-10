@@ -3,7 +3,9 @@ const App = {
     components: {
         MainSettings,
         LowerThird,
-        ImageSelector
+        ImageSelector,
+        Song,
+        SongSelector
     },
     setup() {
         const props = {
@@ -15,7 +17,8 @@ const App = {
         Object.assign(props['fonts'], DEFAULT_FONTS);
 
         const storables = {
-            lts: ['alt2-sort-order', [0]]
+            lts: ['alt2-sort-order', [0]],
+            songs: ['alt2-songs-order', [0]],
         };
     
         // prepare properties
@@ -116,6 +119,10 @@ const App = {
                   .forEach((lt, index) => {
                     lt.defaultLogoSrc = mainSettings.defaultLogos.value[index];
                   });
+        },
+        openSongSelect(args) {
+            let {song, index} = args;
+            this.$refs.songSelector.open(song, index);
         },
         updateFonts() {
             const mainSettings = this.$refs.mainSettings;
