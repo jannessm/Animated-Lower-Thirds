@@ -105,6 +105,7 @@ const App = {
     },
     loadPart(index) {
       this.activePart = index;
+      this.row = 0;
       this.send();
     },
     removePart(index) {
