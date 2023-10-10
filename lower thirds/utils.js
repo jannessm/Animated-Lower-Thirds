@@ -9,7 +9,7 @@ class Storable {
 
   loadValue() {
     const item = JSON.parse(localStorage.getItem(this.id));
-    if (!item) {
+    if (item == undefined) {
       this.value = this.defaultValue;
     } else {
       this.value = item;

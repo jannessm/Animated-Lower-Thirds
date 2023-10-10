@@ -79,7 +79,9 @@ const App = {
             const mainSettings = this.$refs.mainSettings;
             Object.values(this.$refs.lt)
                   .forEach(lt => {
-                        lt.active = mainSettings.active.value && lt.activeTimeMonitor > 0 && lt.inactiveTimeMonitor == 0 && lt.switchOn;
+                        const active = lt.activeTimeMonitor > 0;
+                        const not_inactive = lt.inactiveTimeMonitor == 0;
+                        lt.active = mainSettings.active.value && active && not_inactive && lt.switchOn;
                         lt.inactive = !lt.active && lt.switchOn;
                   });
             
@@ -132,6 +134,8 @@ const App = {
             const mainSettings = this.$refs.mainSettings;
             const {timer, switchStates} = msg.data;
 
+            if (!timer) return;
+
             Object.values(this.$refs.lt).forEach((lt, index) => {
                 // state changes and lt has autoLoad enabled
                 if (lt.active && !switchStates[index] && lt.autoLoad.value) {
@@ -161,6 +165,7 @@ const App = {
             //      * current logo, name, and info
             console.log('send');
             this.sendStyleUpdate();
+            this.sendSlotUpdate();
 
             const main = this.$refs.mainSettings;
 
@@ -174,11 +179,11 @@ const App = {
                                         .map(lt => lt.animationTime.value || main.animationTime.value);
             const activeTimes = Object.values(this.$refs.lt)
                                         .map(lt => {
-                                        if (lt.customTimeSettings && lt.lockActive.value) {
+                                        if (lt.customTimeSettings.value && lt.lockActive.value) {
                                             return Infinity;
-                                        } else if (!lt.customTimeSettings && main.lockActive.value) {
+                                        } else if (!lt.customTimeSettings.value && main.lockActive.value) {
                                             return Infinity;
-                                        } else if (lt.customTimeSettings && lt.activeTime.value){
+                                        } else if (lt.customTimeSettings.value && lt.activeTime.value){
                                             return lt.activeTime.value
                                         } else {
                                             return main.activeTime.value;
@@ -186,11 +191,11 @@ const App = {
                                         });
             const inactiveTimes = Object.values(this.$refs.lt)
                                         .map(lt => {
-                                            if (lt.customTimeSettings && lt.oneShot.value) {
+                                            if (lt.customTimeSettings.value && lt.oneShot.value) {
                                                 return Infinity;
-                                            } else if (!lt.customTimeSettings && main.oneShot.value) {
+                                            } else if (!lt.customTimeSettings.value && main.oneShot.value) {
                                                 return Infinity;
-                                            } else if (lt.customTimeSettings && lt.inactiveTime.value){
+                                            } else if (lt.customTimeSettings.value && lt.inactiveTime.value){
                                                 return lt.inactiveTime.value
                                             } else {
                                                 return main.inactiveTime.value;
@@ -198,11 +203,15 @@ const App = {
                                         });
             const slotValues = Object.values(this.$refs.lt)
                 .map(lt => {
-                    return {
+                    const values = {
                         name: lt.slotNames.value[lt.slotIndex.value],
-                        info: lt.slotInfos.value[lt.slotIndex.value],
                         logoSrc: lt.logoSrc,
                     }
+
+                    if (!!lt.slotInfos) {
+                        values['info'] = lt.slotInfos.value[lt.slotIndex.value];
+                    }
+                    return values;
                 });
             
             this.bc.postMessage({

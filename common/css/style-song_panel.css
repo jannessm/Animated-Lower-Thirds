@@ -51,6 +51,10 @@
   color: black;
 }
 
+.reset {
+  padding: 4px;
+}
+
 #lyrics {
   display: flex;
   flex-direction: column;
@@ -66,6 +70,12 @@
 #lyrics .active {
   background-color: var(--main-color);
   color: black;
+}
+.placeholder {
+  padding: 100px !important;
+  border: none !important;
+  text-align: center;
+  color: #666;
 }
 
 #nav {

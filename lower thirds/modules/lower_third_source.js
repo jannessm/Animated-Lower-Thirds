@@ -125,8 +125,8 @@ const LowerThirdSource = {
                 this.animationTime = animationTime;
                 this.activeTime = Math.max(animationTime, activeTime);
                 this.inactiveTime = Math.max(animationTime, inactiveTime);
-                this.name = slotValues.name;
-                this.info = slotValues.info;
+                // this.name = slotValues.name;
+                // this.info = slotValues.info;
                 this.logoSrc = slotValues.logoSrc;
             }
 
@@ -142,8 +142,12 @@ const LowerThirdSource = {
                 this.hide = false;
             }
         },
-        updateSlot(slotValues) {
-            if (this.switchOn) {
+        updateSlot(slotValues, force=false) {
+            if (force) {
+                this.name = slotValues.name;
+                this.info = slotValues.info;
+                this.logoSrc = slotValues.logoSrc;
+            } else if (this.switchOn) {
                 // wait until animation is done => then update
                 const updateTimer = setInterval(() => {
                     if (this.inactiveTimer > this.animationTime) {

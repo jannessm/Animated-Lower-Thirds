@@ -30,7 +30,7 @@
                     <img :src="logoSrc" />
                 </div>
                 <div class="graph-1"></div>
-                <div class="text-content">
+                <div class="text-content" ref="textContent">
                     <div class="text-mask">
                         <div>{{name}}</div>
                     </div>
@@ -93,6 +93,10 @@
                         Object.values(this.$refs.lt).forEach((lt, index) => {
                             lt.updateStyles(this.isPreview);
                         });
+
+                    // update lyrics
+                    } else if (msg.data.lyrics) {
+                        Object.values(this.$refs.lt).forEach((lt, index) => lt.updateSlot(msg.data.slotValues, true));
 
                     // update everything
                     } else if (msg.data.previewStates) {

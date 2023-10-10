@@ -3,13 +3,12 @@ const App = {
   setup() {
     const props = {
       songPath: ref(''),
-      song: reactive({ablauf: []}),
+      song: reactive({ablauf: [], lyrics: {}}),
       order: reactive(['Titel']),
-      name: ref(''),
-      info: ref(''),
       row: ref(0),
-      maxLineLength: 50,
+      metaDelimiter: ';',
       activePart: ref(0),
+      maxLineLength: 50,
     };
 
     const storables = {
@@ -34,9 +33,6 @@ const App = {
 
     this.bc = new BroadcastChannel('obs-animated-lower-thirds'); //Send to browser source
     this.bc.onmessage = this.bcHandler;
-
-    this.songPath = 'ghs/1. Ich singe dir mit Herz und Mund.txt';
-    this.loadSong();
   },
   computed: {
     meta() {
@@ -73,28 +69,30 @@ const App = {
       });
     },
     splitLines() {
+      this.song['splittedLyrics'] = {};
       Object.keys(this.song.lyrics).forEach(part => {
-        const words = this.song.lyrics[part].split(' ');
-        const lines = [''];
-        let i = 0;
-        let currLen = 0;
+        // const words = this.song.lyrics[part].split(' ');
+        // const lines = [''];
+        // let i = 0;
+        // let currLen = 0;
 
-        words.forEach(w => {
-          if (currLen + w.length < this.maxLineLength) {
-            currLen += w.length + 1;
-            lines[i] += w + ' ';
-          } else {
-            currLen = w.length + 1;
-            lines.push(w + ' ');
-            i++;
-          }
-        });
+        // words.forEach(w => {
+        //   if (currLen + w.length < this.maxLineLength) {
+        //     currLen += w.length + 1;
+        //     lines[i] += w + ' ';
+        //   } else {
+        //     currLen = w.length + 1;
+        //     lines.push(w + ' ');
+        //     i++;
+        //   }
+        // });
 
-        this.song.lyrics[part] = lines;
+        // this.song.splittedLyrics[part] = lines;
+        this.song.splittedLyrics[part] = this.song.lyrics[part].split('\n').map(val => val.trim());
       });
     },
     appendMeta(meta, newString) {
-      if (meta.length > 0) meta += ', ';
+      if (meta.length > 0) meta += this.metaDelimiter + ' ';
       meta += newString;
       return meta;
     },
@@ -104,6 +102,12 @@ const App = {
         this.order.push(item);
       });
       this.activePart = 0;
+      this.row = 0;
+      this.send();
+    },
+    loadPart(index) {
+      this.activePart = index;
+      this.send();
     },
     removePart(index) {
       this.order.splice(index, 1);
@@ -114,21 +118,28 @@ const App = {
         this.activePart = Math.max(0, this.activePart - 1);
         this.row = 0;
       }
+
+      this.send();
     },
     lineDown() {
       const part = this.order[this.activePart];
+      const lyrics = this.song.splittedLyrics[part];
       this.row++;
 
-      if (this.activePart > 0 && this.row >= this.song.lyrics[part].length) {
+      if (lyrics && this.activePart > 0 && this.row >= lyrics.length) {
         this.activePart = Math.min(this.order.length, this.activePart + 1);
         this.row = 0;
       } else if (this.activePart == 0) {
         this.row = 0;
         this.activePart = 1;
+      } else if (!lyrics && this.activePart > 0) {
+        this.row = 0;
       }
+
+      this.send();
     },
     bcHandler(msg) {
-      if (msg.data['updateSlot']) {
+      if (msg.data.updateSlot) {
         this.slotIndex.update();
         this.slotNames.update();
 
@@ -136,77 +147,26 @@ const App = {
         this.loadSong();
       }
     },
-      send() {
-          // values that should be communicated:
-          //      * which switches are on
-          //      * which previews are on
-          //      * aggregated times (animation, active, inactive)
-          //      * values that are calculated from
-          //      * current logo, name, and info
-          console.log('send');
-          this.sendStyleUpdate();
+    send() {
+      // values that should be communicated:
+      //      * current logo, name, and info
+      const slotValues = {};
 
-          const main = this.$refs.mainSettings;
-
-          
-          const switchStates = Object.values(this.$refs.lt)
-                                     .map(lt => lt.switchOn && main.active.value);
-          const previewStates = Object.values(this.$refs.lt)
-                                      .map(lt => lt.previewOn);
-
-          const animationTimes = Object.values(this.$refs.lt)
-                                      .map(lt => lt.animationTime.value || main.animationTime.value);
-          const activeTimes = Object.values(this.$refs.lt)
-                                      .map(lt => {
-                                      if (lt.customTimeSettings && lt.lockActive.value) {
-                                          return Infinity;
-                                      } else if (!lt.customTimeSettings && main.lockActive.value) {
-                                          return Infinity;
-                                      } else if (lt.customTimeSettings && lt.activeTime.value){
-                                          return lt.activeTime.value
-                                      } else {
-                                          return main.activeTime.value;
-                                      }
-                                      });
-          const inactiveTimes = Object.values(this.$refs.lt)
-                                      .map(lt => {
-                                          if (lt.customTimeSettings && lt.oneShot.value) {
-                                              return Infinity;
-                                          } else if (!lt.customTimeSettings && main.oneShot.value) {
-                                              return Infinity;
-                                          } else if (lt.customTimeSettings && lt.inactiveTime.value){
-                                              return lt.inactiveTime.value
-                                          } else {
-                                              return main.inactiveTime.value;
-                                          }
-                                      });
-          const slotValues = Object.values(this.$refs.lt)
-              .map(lt => {
-                  return {
-                      name: lt.slotNames.value[lt.slotIndex.value],
-                      info: lt.slotInfos.value[lt.slotIndex.value],
-                      logoSrc: lt.logoSrc,
-                  }
-              });
-          
-          this.bc.postMessage({
-              switchStates, previewStates, animationTimes, activeTimes, inactiveTimes, slotValues
-          });
-      },
-      sendStyleUpdate() {
-          this.bc.postMessage({ updateStyles: true });
-      },
-      sendSlotUpdate() {
-          console.log('send slot update');
-          const slotValues = Object.values(this.$refs.lt)
-              .map(lt => {
-                  return {
-                      name: lt.slotNames.value[lt.slotIndex.value],
-                      info: lt.slotInfos.value[lt.slotIndex.value],
-                      logoSrc: lt.logoSrc,
-                  }
-              });
-          this.bc.postMessage({ updateSlot: true, slotValues });
-      },
+      if (this.activePart == 0) {
+        slotValues['name'] = this.song.titel;
+        slotValues['info'] = this.meta;
+      } else if (this.activePart >= this.order.length) {
+        slotValues['name'] = '';
+        slotValues['info'] = '';
+      } else {
+        slotValues['name'] = this.song.splittedLyrics[this.order[this.activePart]][this.row];
+        slotValues['info'] = '';
+      }
+      
+      this.bc.postMessage({
+        lyrics: true,
+        slotValues
+      });
+    }
   }
 };

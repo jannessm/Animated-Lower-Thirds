@@ -6,11 +6,20 @@ CCLI:
 Ablauf: 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15
 --------------------------------------
 # 1
-Ich singe dir mit Herz und Mund Herr, meines Herzens Lust; ich sing und mach auf Erden kund, was mir von dir bewusst.
+Ich singe dir mit Herz und Mund
+Herr, meines Herzens Lust;
+ich sing und mach auf Erden kund,
+was mir von dir bewusst.
 # 2
-Ich weiß, dass du der Brunn der Gnad und ewge Quelle bist, daraus uns allen früh und spat viel Heil und Gutes fließt.
+Ich weiß, dass du der Brunn der Gnad
+und ewge Quelle bist,
+daraus uns allen früh und spat
+viel Heil und Gutes fließt.
 # 3
-Was sind wir Doch? Was haben wir auf dieser ganzen Erd, das uns, o Vater, nicht von dir, allein gegeben werd?
+Was sind wir Doch?
+Was haben wir auf dieser ganzen Erd,
+das uns, o Vater,
+nicht von dir, allein gegeben werd?
 # 4
 Wer hat das schöne Himmelszelt hoch über uns gesetzt? Wer ist es, der uns unser Feld mit Tau und Regen netzt?
 # 5

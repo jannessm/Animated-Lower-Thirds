@@ -24,15 +24,15 @@
 		<div id="alt-panel"></div>
 
 		<template id="app-template">
-			<div id="sortable">
+			<div id="sortable" v-if="order.length > 1">
                 <div :class="{'song-part': true, 'active': activePart == index}"
                      v-for="(part, index) in order"
-                     @click="activePart = index">
+                     @click="loadPart(index)">
                     {{part}}
                     
                     <div class="icon icon-cross" @click="removePart(index)"></div>
                 </div>
-                <div @click="resetOrder()">Reset</div>
+                <div class="reset" @click="resetOrder()">Reset</div>
 			</div>
 
             <div id="nav">
@@ -40,13 +40,18 @@
                 <div class="icon icon-angle-down" @click="lineDown()"></div>
             </div>
 
-            <div v-if="song.lyrics && activePart > 0" id="lyrics">
-                <div v-for="(l, index) in song.lyrics[order[activePart]]" @click="row = index" :class="{'active': row == index}">{{l}}</div>
+            <div v-if="song.text && activePart > 0 && activePart < order.length" id="lyrics">
+                <div v-for="(l, index) in song.splittedLyrics[order[activePart]]"
+                     @click="row = index"
+                     :class="{'active': row == index}">{{l}}</div>
             </div>
-            <div v-if="song.lyrics && activePart == 0" id="lyrics">
+            <div v-else-if="song.text && activePart == 0" id="lyrics">
                 <div :class="{'active': row == 0}">
                     {{song.titel}}<br>{{meta}}
                 </div>
+            </div>
+            <div v-else id="lyrics">
+                <div class="placeholder">Kein Lied ausgewählt</div>
             </div>
 		</template>
 

@@ -94,6 +94,11 @@ const Song = {
     }
 
     jscolor.install();
+
+    setTimeout(() => {
+      if (!!this.slotNames.value[0])
+        this.loadSlot(0);
+    }, 100);
   },
   methods: {
     nameClickHandler() {
@@ -153,6 +158,13 @@ const Song = {
     slotIsStored(index) {
       return this.slotNames.value[index] !== '';
     },
+    updateSlotName(index) {
+      this.slotNames.update();
+
+      if (index == this.slotIndex.value) {
+        this.$emit('slotChanged');
+      }
+    },
     loadSlot(index) {
       this.slotIndex.value = index;
 
@@ -161,9 +173,11 @@ const Song = {
         this.$emit('switchChanged');
       }
 
-      // if (this.autoLoad.value) {
-        this.$emit('slotChanged');
-      // }
+      this.$emit('slotChanged');
+    },
+    clearSlot(index) {
+      this.slotNames.value[index] = '';
+      this.slotNames.update();
     },
     slotLoadNext() {
       // if no slot was loaded and no slot is stored => do nothing

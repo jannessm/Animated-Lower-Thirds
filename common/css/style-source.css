@@ -324,6 +324,37 @@ body {
 	}
 }
 
+/*****************************
+** Style 4 Animation: Left/Right  **
+*****************************/
+@keyframes animation-style4-background-left {
+	0% {
+		left: 0;
+		width: 0;
+	}
+	100% {
+		left: 0;
+		width: 100%;
+	}
+}
+@keyframes animation-style4-background-right {
+	0% {
+		left: 110vw;
+		width: 0;
+	}
+	100% {
+		left: 0;
+		width: 100%;
+	}
+}
+@keyframes animation-style4-background-center {
+	0% {
+		height: 0;
+	}
+	100% {
+		height: 100%;
+	}
+}
 
 /*Logo animation*/
 .animation-in > div:first-child img {
@@ -505,10 +536,10 @@ body {
 }
 
 .style-1 > .graph-1 {
-    order: 1;
+	order: 1;
 	position: relative;
 	min-width: 0.3em;
-    height: 3.5em;
+	height: 3.5em;
 }
 
 .style-1 > .graph-2 {
@@ -516,8 +547,8 @@ body {
 	z-index: -1;
 	position: absolute;
 	width: 100%;
-    height: calc(100% + 2em);
-    margin: 0 -1em;
+	height: calc(100% + 2em);
+	margin: 0 -1em;
 	padding: 0 1em;
 	
 	box-sizing: border-box;
@@ -641,6 +672,103 @@ body {
 	right: 0.75em;
 	position: relative;
 }
+
+/*****Style 4*****/
+.style-4.alt {
+	width: 100%;
+	left: 0 !important;
+	bottom: 0 !important;
+	z-index: 10;
+}
+
+.style-4 > .logo img{
+	max-height: 4.5em;
+	max-width: 4.5em;
+}
+
+.style-4 > .logo {
+	z-index: 1;
+	margin: 0;
+}
+.style-4 > .logo.no-logo {
+	min-width: 5.5em;
+	min-height: 5.5em;
+}
+
+.style-4 > .graph-1 {
+	background: var(--alt-0-style-color-1);
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	z-index: -2;
+	width: 100%;
+	height: 100%;
+}
+
+.style-4 > .graph-2 {
+	background: var(--alt-0-style-color-2);
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	z-index: -1;
+	width: 100%;
+	height: 100%;
+}
+
+.style-4 > .text-content {
+	width: 100%;
+	padding: 16px;
+}
+.style-4 .text-mask {
+	height: auto !important;
+	overflow: visible !important;
+}
+
+.animation-in.style-4.left .graph-1 {
+	animation-name: animation-style4-background-left;
+}
+.animation-out.style-4.left .graph-1 {
+	animation-delay: 100ms;
+	animation-name: animation-style4-background-left;
+}
+.animation-in.style-4.left .graph-2 {
+	animation-delay: 100ms;
+	animation-name: animation-style4-background-left;
+}
+.animation-out.style-4.left .graph-2 {
+	animation-name: animation-style4-background-left;
+}
+
+.animation-in.style-4.right .graph-1 {
+	animation-name: animation-style4-background-right;
+}
+.animation-out.style-4.right .graph-1 {
+	animation-delay: 100ms;
+	animation-name: animation-style4-background-right;
+}
+.animation-in.style-4.right .graph-2 {
+	animation-delay: 100ms;
+	animation-name: animation-style4-background-right;
+}
+.animation-out.style-4.right .graph-2 {
+	animation-name: animation-style4-background-right;
+}
+
+.animation-in.style-4.center .graph-1 {
+	animation-name: animation-style4-background-center;
+}
+.animation-out.style-4.center .graph-1 {
+	animation-delay: 100ms;
+	animation-name: animation-style4-background-center;
+}
+.animation-in.style-4.center .graph-2 {
+	animation-delay: 100ms;
+	animation-name: animation-style4-background-center;
+}
+.animation-out.style-4.center .graph-2 {
+	animation-name: animation-style4-background-center;
+}
+
 
 /*Graph2 animation*/
 .animation-in.style-3.left > div:nth-child(4),

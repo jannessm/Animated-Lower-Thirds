@@ -566,9 +566,9 @@
 									<div>
 										<div class="input-icon icon icon-paint-brush"></div>
 										<div class="number-input">
-											<input id="alt-1-style" min="1" max="3" v-model="style.value" type="number" readonly>
+											<input id="alt-1-style" min="1" max="4" v-model="style.value" type="number" readonly>
 											<button @click="stepDown(style, 1); restrictStyles(); $emit('styleChanged');" class="down"></button>
-											<button @click="stepUp(style, 3); restrictStyles(); $emit('styleChanged');" class="up"></button>
+											<button @click="stepUp(style, 4); restrictStyles(); $emit('styleChanged');" class="up"></button>
 										</div>
 									</div>
 									<div>
@@ -597,9 +597,9 @@
 									<div :id="`alt-${index}-line-height`">
 										<div class="input-icon icon icon-text-height"></div>
 											<div class="number-input">
-											<input id="alt-1-inverse-ratio" min="0" max="10" v-model="inverseRatio.value" type="number">
+											<input id="alt-1-inverse-ratio" min="0" max="50" v-model="inverseRatio.value" type="number">
 											<button @click="stepDown(inverseRatio, 0)" class="down"></button>
-											<button @click="stepUp(inverseRatio, 10)" class="up"></button>
+											<button @click="stepUp(inverseRatio, 50)" class="up"></button>
 										</div>
 									</div>
 									<div :id="`alt-${index}-line-spacing`">
@@ -763,7 +763,7 @@
 									
 									<div v-else @click.stop="selectSong(index - 1)" class="icon icon-plus"></div>
 									
-									<div @click.stop="slotNames.value[index - 1] = ''" class="icon icon-cross"></div>
+									<div @click.stop="clearSlot(index - 1)" class="icon icon-cross"></div>
 								</li>
 							</ul>
 						</div>
