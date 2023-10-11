@@ -38,12 +38,18 @@ const App = {
 
       if (this.song.ccli) 
         meta = this.appendMeta(meta, 'CCLI: ' + this.song.ccli);
-      if (this.song.text)
-        meta = this.appendMeta(meta, 'Text: ' + this.song.text);
-      if (this.song.melodie)
-        meta = this.appendMeta(meta, 'Melodie: ' + this.song.melodie);
+      if (this.song['text und melodie'])
+        meta = this.appendMeta(meta, 'Text und Melodie: ' + this.song['text und melodie']);
+      else {
+        if (this.song.text)
+          meta = this.appendMeta(meta, 'Text: ' + this.song.text);
+        if (this.song.melodie)
+          meta = this.appendMeta(meta, 'Melodie: ' + this.song.melodie);
+      }
       if (this.song.satz)
         meta = this.appendMeta(meta, 'Satz: ' + this.song.satz);
+      if (this.song.c)
+        meta = this.appendMeta(meta, '© ' + this.song.c);
 
       return meta;
     }
