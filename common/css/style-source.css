@@ -815,6 +815,7 @@ body {
 .animation-out.style-4 > .text-content > div:nth-child(2) div {
 	animation-name: animation-style4-text-2;
 }
+/*****Style 4*****/
 .style-4 > div.text-content > div:first-child div {
 	padding: 0.5rem 1.3rem;
 }
