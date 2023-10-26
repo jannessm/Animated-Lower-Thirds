@@ -280,7 +280,7 @@
 							<div class="icon-btn icon icon-search"></div>
 						</label>
 						<div class="drag-handle" :class="{'switch-left': switchLeft}">
-							<div class="alt-number-icon" v-show="!hiddenSlotNumbers">{{index + 1}}</div>
+							<div class="alt-number-icon">{{index + 1}}</div>
 							<div class="renameable" v-show="!nameIsEditable" @click="nameClickHandler()">{{title.value}}</div>
 							<div class="settings-inputs">
 								<input :id="`alt-${index}-title`" type='text' v-model="title.value" maxlength='40' v-show="nameIsEditable" @focusout="nameIsEditable = false">
@@ -479,7 +479,7 @@
 									@mouseDown="slotHandlerDown(index)"
 									@mouseUp="slotHandlerUp(index)"
 									:title="slotTooltips[index]">
-									<div class="slot-number">{{index + 1}}</div>
+									<div class="slot-number" v-show="!hiddenSlotNumbers">{{index + 1}}</div>
 								</li>
 							</ul>
 							<div class="time-bar">
