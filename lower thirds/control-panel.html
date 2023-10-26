@@ -210,10 +210,10 @@
 								<div class="default-options">
 									<div class="settings-title"></div>
 									<div class="settings-inputs">
-										<label><input type="checkbox" v-model="enabledPreview.value" @change="$emit('appearanceChanged')">Enable preview window</label>
-										<label><input type="checkbox" v-model="hiddenSlotNumbers.value" @change="$emit('appearanceChanged')">Hide numbers of the memory slots</label>
-										<label><input type="checkbox" v-model="switchesLeft.value" @change="$emit('appearanceChanged')">Switches on the left</label>
-										<label><input type="checkbox" v-model="enabledTooltips.value" @change="$emit('appearanceChanged')">Show tooltips with the stored content</label>
+										<label><input id="set-preview" type="checkbox" v-model="enabledPreview.value" @change="$emit('appearanceChanged')">Enable preview window</label>
+										<label><input id="set-slot-numbers" type="checkbox" v-model="hiddenSlotNumbers.value" @change="$emit('appearanceChanged')">Hide numbers of the memory slots</label>
+										<label><input id="set-switch-position" type="checkbox" v-model="switchesLeft.value" @change="$emit('appearanceChanged')">Switches on the left</label>
+										<label><input id="set-tooltips" type="checkbox" v-model="enabledTooltips.value" @change="$emit('appearanceChanged')">Show tooltips with the stored content</label>
 									</div>
 								</div>
 							</div>
@@ -272,18 +272,18 @@
 				<div :id="`alt-${index}-config-content`">
 					<div :class="{active: active, inactive: inactive}">
 						<label class="switch" :class="{'switch-left': switchLeft}">
-							<input type="checkbox" @change="$emit('switchChanged')" v-model="switchOn">
+							<input :id="`alt-${index}-switch`" type="checkbox" @change="$emit('switchChanged')" v-model="switchOn">
 							<span class="slider round"></span>
 						</label>
 						<label :id="`alt-${index}-enable-preview`" class="config-btn preview-btn" v-show="enabledPreview">
-							<input type="checkbox" @change="$emit('switchChanged')" :id="`alt-${index}-preview`" v-model="previewOn">
+							<input :id="`alt-${index}-preview`" type="checkbox" @change="$emit('switchChanged')" v-model="previewOn">
 							<div class="icon-btn icon icon-search"></div>
 						</label>
 						<div class="drag-handle" :class="{'switch-left': switchLeft}">
-							<div class="alt-number-icon" v-show="!hiddenSlotNumbers">{{index + 1}}</div>
+							<div class="alt-number-icon">{{index + 1}}</div>
 							<div class="renameable" v-show="!nameIsEditable" @click="nameClickHandler()">{{title.value}}</div>
 							<div class="settings-inputs">
-								<input type='text' v-model="title.value" maxlength='40' v-show="nameIsEditable" @focusout="nameIsEditable = false">
+								<input :id="`alt-${index}-title`" type='text' v-model="title.value" maxlength='40' v-show="nameIsEditable" @focusout="nameIsEditable = false">
 							</div>
 						</div>
 						<label class="accordion" @click="toggleStyleSettings()" :class="{active: showStyleSettings}"></label>
@@ -292,18 +292,18 @@
 								<div class="grid-row">
 									<div>
 										<div class="align-toggle">
-										<input type="radio" :checked="align.value == 'left'"/>
-										<label :id="`alt-${index}-align-left`" @click="align.value = 'left'; $emit('styleChanged');"><div class="icon icon-aling-left"></div></label>
-										<input type="radio" :checked="align.value == 'center'" :disabled="style.value == 1"/>
-										<label :id="`alt-${index}-align-center`" @click="align.value = 'center'; $emit('styleChanged');"><div class="icon icon-aling-center"></div></label>
-										<input type="radio" :checked="align.value == 'right'"/>
-										<label :id="`alt-${index}-align-right`" @click="align.value = 'right'; $emit('styleChanged');"><div class="icon icon-aling-right"></div></label>
+										<input :id="`alt-${index}-align-left`" type="radio" :checked="align.value == 'left'"/>
+										<label @click="align.value = 'left'; $emit('styleChanged');"><div class="icon icon-aling-left"></div></label>
+										<input :id="`alt-${index}-align-center`" type="radio" :checked="align.value == 'center'" :disabled="style.value == 1"/>
+										<label @click="align.value = 'center'; $emit('styleChanged');"><div class="icon icon-aling-center"></div></label>
+										<input :id="`alt-${index}-align-right`" type="radio" :checked="align.value == 'right'"/>
+										<label @click="align.value = 'right'; $emit('styleChanged');"><div class="icon icon-aling-right"></div></label>
 									</div>
 									</div>
 									<div>
 										<div class="input-icon icon icon-paint-brush"></div>
 										<div class="number-input">
-											<input id="alt-1-style" min="1" max="3" v-model="style.value" type="number" readonly>
+											<input :id="`alt-${index}-style`" min="1" max="3" v-model="style.value" type="number" readonly>
 											<button @click="stepDown(style, 1); restrictStyles(); $emit('styleChanged');" class="down"></button>
 											<button @click="stepUp(style, 3); restrictStyles(); $emit('styleChanged');" class="up"></button>
 										</div>
@@ -311,7 +311,7 @@
 									<div>
 										<div class="input-icon icon icon-size"></div>
 										<div class="number-input">
-											<input id="alt-1-size" min="10" max="50" v-model="size.value" type="number">
+											<input :id="`alt-${index}-size`" min="10" max="50" v-model="size.value" type="number">
 											<button @click="stepDown(size, 10)" class="down"></button>
 											<button @click="stepUp(size, 50)" class="up"></button>
 										</div>
@@ -319,12 +319,12 @@
 									<div :id="`alt-${index}-margin`" class="margin-config group">
 										<div class="input-icon icon icon-position"></div>
 										<div class="number-input">
-											<input id="alt-1-margin-h" min="0" max="100" v-model="marginH.value" type="number">
+											<input :id="`alt-${index}-margin-h`" min="0" max="100" v-model="marginH.value" type="number">
 											<button @click="stepDown(marginH, 0)" class="down"></button>
 											<button @click="stepUp(marginH, 100)" class="up"></button>
 										</div>
 										<div class="number-input input-no-icon">
-											<input id="alt-1-margin-v" min="0" max="55" v-model="marginV.value" type="number">
+											<input :id="`alt-${index}-margin-v`" min="0" max="55" v-model="marginV.value" type="number">
 											<button @click="stepDown(marginV, 0)" class="down"></button>
 											<button @click="stepUp(marginV, 55)" class="up"></button>
 										</div>
@@ -334,22 +334,22 @@
 									<div :id="`alt-${index}-line-height`">
 										<div class="input-icon icon icon-text-height"></div>
 											<div class="number-input">
-											<input id="alt-1-inverse-ratio" min="0" max="10" v-model="inverseRatio.value" type="number">
+											<input :id="`alt-${index}-inverse-ratio`" min="0" max="10" v-model="inverseRatio.value" type="number">
 											<button @click="stepDown(inverseRatio, 0)" class="down"></button>
 											<button @click="stepUp(inverseRatio, 10)" class="up"></button>
 										</div>
 									</div>
-									<div :id="`alt-${index}-line-spacing`">
+									<div>
 										<div class="input-icon icon icon-line-spacing"></div>
 											<div class="number-input">
-											<input min="-5" max="5" v-model="lineSpacing.value" type="number">
+											<input :id="`alt-${index}-line-spacing`" min="-5" max="5" v-model="lineSpacing.value" type="number">
 											<button @click="stepDown(lineSpacing, -5)" class="down"></button>
 											<button @click="stepUp(lineSpacing, 5)" class="up"></button>
 										</div>
 									</div>									
 									<div class="font-config group">
 										<div class="input-icon icon icon-font"></div>
-										<select id="alt-1-font" v-model="font.value" @change="$emit('styleChanged');">
+										<select :id="`alt-${index}-font`" v-model="font.value" @change="$emit('styleChanged');">
 											<optgroup v-for="(fonts, fontgroup) in fonts" :label="fontgroup">
 												<option v-if="fontgroup != 'custom'" v-for="font in fonts" :value="`${font}, ${fontgroup}`">{{font}}</option>
 												<option v-else v-for="font in fonts" :value="`${font}`">{{font}}</option>
@@ -359,38 +359,38 @@
 								</div>
 								<div class="grid-row">
 									<div>
-										<label class="config-btn" :id="`alt-${index}-logo`">
-											<input type="checkbox" v-model="enabledLogo.value" :disabled="style.value == 2" @change="$emit('styleChanged');">
+										<label class="config-btn">
+											<input :id="`alt-${index}-logo`" type="checkbox" v-model="enabledLogo.value" :disabled="style.value == 2" @change="$emit('styleChanged');">
 											<div class="icon-btn icon icon-image"></div>
 										</label>									
-										<div class="number-input" :id="`alt-${index}-logo-size`">
-											<input id="alt-1-logo-size" min="-10" max="10" v-model="logoSize.value" type="number" :disabled="!enabledLogo.value || style.value == 2">
+										<div class="number-input">
+											<input :id="`alt-${index}-logo-size`" min="-10" max="10" v-model="logoSize.value" type="number" :disabled="!enabledLogo.value || style.value == 2">
 											<button @click="stepDown(logoSize, -10)" class="down" :disabled="!enabledLogo.value"></button>
 											<button @click="stepUp(logoSize, 10)" class="up" :disabled="!enabledLogo.value"></button>
 										</div>
 									</div>
 									<div>
-										<label class="config-btn" :id="`alt-${index}-shadows`">
-											<input type="checkbox" v-model="shadows.value" @change="$emit('styleChanged');">
+										<label class="config-btn">
+											<input :id="`alt-${index}-shadows`" type="checkbox" v-model="shadows.value" @change="$emit('styleChanged');">
 											<div class="icon-btn icon icon-shadow"></div>
 										</label>
-										<div class="number-input" :id="`alt-${index}-shadow-opacity`">
-											<input id="alt-1-shadow-amount" min="1" max="10" v-model="shadowAmount.value" type="number" :disabled="!shadows.value">
+										<div class="number-input">
+											<input :id="`alt-${index}-shadow-amount`" min="1" max="10" v-model="shadowAmount.value" type="number" :disabled="!shadows.value">
 											<button @click="stepDown(shadowAmount, 1)" class="down" :disabled="!shadows.value"></button>
 											<button @click="stepUp(shadowAmount, 10)" class="up" :disabled="!shadows.value"></button>
 										</div>
 									</div>
 									<div>
-										<label class="config-btn" :id="`alt-${index}-fill-colors`">
-											<input type="checkbox" v-model="background.value" @change="$emit('styleChanged');">
+										<label class="config-btn">
+											<input :id="`alt-${index}-fill-colors`" type="checkbox" v-model="background.value" @change="$emit('styleChanged');">
 											<div class="icon-btn icon icon-fill-drip"></div>
 										</label>
 										<div class="fill-color-appearance">
-										<!-- <div id="alt-1-style-color-appearance" class="fill-color-appearance"> -->
+										<!-- <div :id="`alt-${index}-style-color-appearance`" class="fill-color-appearance"> -->
 											<div class="tool-title" :class="{disabled: !background.value}">Clr 1</div>
-											<input id="alt-1-style-color-1" v-model="backgroundColor1.value" @change="$emit('styleChanged');" :data-jscolor="JSON.stringify(jscolorConfig)" :disabled="!background.value">
+											<input :id="`alt-${index}-style-color-1`" v-model="backgroundColor1.value" @change="$emit('styleChanged');" :data-jscolor="JSON.stringify(jscolorConfig)" :disabled="!background.value">
 											<div class="tool-title" :class="{disabled: !background.value}">Clr 2</div>
-											<input id="alt-1-style-color-2" v-model="backgroundColor2.value" @change="$emit('styleChanged');" :data-jscolor="JSON.stringify(jscolorConfig)" :disabled="!background.value">
+											<input :id="`alt-${index}-style-color-2`" v-model="backgroundColor2.value" @change="$emit('styleChanged');" :data-jscolor="JSON.stringify(jscolorConfig)" :disabled="!background.value">
 										</div>
 									</div>
 								</div>
@@ -398,33 +398,33 @@
 									<div :id="`alt-${index}-corners`">
 										<div class="input-icon icon icon-corner"></div>
 										<div class="number-input">
-											<input id="alt-1-corners" min="0" max="10" v-model="corners.value" type="number">
+											<input :id="`alt-${index}-corners`" min="0" max="10" v-model="corners.value" type="number">
 											<button @click="stepDown(corners, 0)" class="down"></button>
 											<button @click="stepUp(corners, 10)" class="up"></button>
 										</div>
 									</div>
-									<div :id="`alt-${index}-border-thickness`">
+									<div>
 										<label class="config-btn">
-											<input type="checkbox" id="alt-1-border-thickness" v-model="borders.value" @change="$emit('styleChanged');">
+											<input :id="`alt-${index}-thickness`" type="checkbox" v-model="borders.value" @change="$emit('styleChanged');">
 											<div class="icon-btn icon icon-thickness"></div>
 										</label>
 										<div class="number-input">
-											<input min="1" max="10" v-model="borderThickness.value" type="number" :disabled="!borders.value">
+											<input :id="`alt-${index}-border-thickness`" min="1" max="10" v-model="borderThickness.value" type="number" :disabled="!borders.value">
 											<button @click="stepDown(borderThickness, 1)" class="down" :disabled="!borders.value"></button>
 											<button @click="stepUp(borderThickness, 10)" class="up" :disabled="!borders.value"></button>
 										</div>
 									</div>
-									<div :id="`alt-${index}-borders`">
+									<div>
 										<label class="config-btn">
-											<input type="checkbox" v-model="borders.value" @change="$emit('styleChanged');">
+											<input :id="`alt-${index}-borders`" type="checkbox" v-model="borders.value" @change="$emit('styleChanged');">
 											<div class="icon-btn icon icon-pen"></div>
 										</label>
-										<!-- <div id="alt-1-style-border-color-appearance" class="border-color-appearance"> -->
+										<!-- <div :id="`alt-${index}-style-border-color-appearance`" class="border-color-appearance"> -->
 										<div class="border-color-appearance">
 											<div class="tool-title" :class="{disabled: !borders.value}">Clr 3</div>
 											<input :id="`alt-${index}-style-color-3`" v-model="bordersColor1.value" @change="$emit('styleChanged');" :data-jscolor="JSON.stringify(jscolorConfig)" :disabled="!borders.value">
 											<div class="tool-title" :class="{disabled: !borders.value}">Clr 4</div>
-											<input :id="`alt-${index}-style-color-3`" v-model="bordersColor2.value" @change="$emit('styleChanged');" :data-jscolor="JSON.stringify(jscolorConfig)" :disabled="!borders.value">
+											<input :id="`alt-${index}-style-color-4`" v-model="bordersColor2.value" @change="$emit('styleChanged');" :data-jscolor="JSON.stringify(jscolorConfig)" :disabled="!borders.value">
 										</div>
 									</div>
 								</div>
@@ -435,34 +435,34 @@
 								<img class="logo-preview" :src="resolvedLogoSrc">
 							</div>
 							<div class="textfields-container">
-								<input type="text" :id="`alt-${index}-name`" placeholder="Name" tabindex="4" v-model="name.value">
+								<input :id="`alt-${index}-name`" type="text" placeholder="Name" tabindex="4" v-model="name.value">
 								<div :id="`alt-${index}-name-appearance`">
-									<label :id="`alt-${index}-name-uppercase`" class="config-btn small">
-										<input type="checkbox" v-model="nameTransform.value">
+									<label class="config-btn small">
+										<input :id="`alt-${index}-name-uppercase`" type="checkbox" v-model="nameTransform.value">
 										<div class="icon-btn icon small icon-uppercase"></div>
 									</label>
-									<label :id="`alt-${index}-name-bold`" class="config-btn small">
-										<input type="checkbox" v-model="nameBold.value">
+									<label class="config-btn small">
+										<input :id="`alt-${index}-name-bold`" type="checkbox" v-model="nameBold.value">
 										<div class="icon-btn icon small icon-bold"></div>
 									</label>
-									<label :id="`alt-${index}-name-italic`" class="config-btn small">
-										<input type="checkbox" v-model="nameItalic.value" @change="$emit('styleChanged');">
+									<label class="config-btn small">
+										<input :id="`alt-${index}-name-italic`" type="checkbox" v-model="nameItalic.value" @change="$emit('styleChanged');">
 										<div class="icon-btn icon small icon-italic"></div>
 									</label>
 									<input :id="`alt-${index}-name-color`" :data-jscolor="JSON.stringify(jscolorConfig)" v-model="nameColor.value" @change="$emit('styleChanged');">
 								</div>
 								<input type="text" :id="`alt-${index}-info`" placeholder="Info" tabindex="4" v-model="info.value" @change="$emit('styleChanged');">
 								<div :id="`alt-${index}-info-appearance`">
-									<label :id="`alt-${index}-info-uppercase`" class="config-btn small">
-										<input type="checkbox" v-model="infoTransform.value" @change="$emit('styleChanged');">
+									<label class="config-btn small">
+										<input :id="`alt-${index}-info-uppercase`" type="checkbox" v-model="infoTransform.value" @change="$emit('styleChanged');">
 										<div class="icon-btn icon small icon-uppercase"></div>
 									</label>
-									<label :id="`alt-${index}-info-bold`" class="config-btn small">
-										<input type="checkbox" v-model="infoBold.value" @change="$emit('styleChanged');">
+									<label class="config-btn small">
+										<input :id="`alt-${index}-info-bold`" type="checkbox" v-model="infoBold.value" @change="$emit('styleChanged');">
 										<div class="icon-btn icon small icon-bold"></div>
 									</label>
-									<label :id="`alt-${index}-info-italic`" class="config-btn small">
-										<input type="checkbox" v-model="infoItalic.value" @change="$emit('styleChanged');">
+									<label class="config-btn small">
+										<input :id="`alt-${index}-info-italic`" type="checkbox" v-model="infoItalic.value" @change="$emit('styleChanged');">
 										<div class="icon-btn icon small icon-italic"></div>
 									</label>
 									<input :id="`alt-${index}-info-color`" :data-jscolor="JSON.stringify(jscolorConfig)" v-model="infoColor.value" @change="$emit('styleChanged');">
@@ -473,24 +473,25 @@
 						<div class="panel-bottom">
 							<div :id="`alt-${index}-clean`" class="clean" @click="clearInputs"><div class="icon icon-cross"></div></div>
 							<ul>
-								<li v-for="(name, index) in slotNames.value"
+								<li :id="`alt-${index}-slot-${index + 1}`"
+									v-for="(name, index) in slotNames.value"
 									:class="{delete: slotIsDelete[index], 'active-slot': slotIsActive(index), stored: slotIsStored(index)}"
 									@mouseDown="slotHandlerDown(index)"
 									@mouseUp="slotHandlerUp(index)"
 									:title="slotTooltips[index]">
-									<div class="slot-number">{{index + 1}}</div>
+									<div class="slot-number" v-show="!hiddenSlotNumbers">{{index + 1}}</div>
 								</li>
 							</ul>
 							<div class="time-bar">
 								<div>{{activeTimeMonitor}}</div>
 								<div>{{inactiveTimeMonitor}}</div>
 							</div>
-							<label class="config-btn" :id="`alt-${index}-autotrigger`">
-								<input type="checkbox" v-model="autoTrigger.value">
+							<label class="config-btn">
+								<input :id="`alt-${index}-autotrigger`" type="checkbox" v-model="autoTrigger.value">
 								<div class="icon-btn icon icon-autotrigger"></div>
 							</label>
-							<label :id="`alt-${index}-autoload`" class="config-btn">
-								<input type="checkbox" v-model="autoLoad.value">
+							<label class="config-btn">
+								<input :id="`alt-${index}-autoload`" type="checkbox" v-model="autoLoad.value">
 								<div class="icon-btn icon icon-sync"></div>
 							</label>
 							<label :id="`alt-${index}-custom-times`" class="accordion" @click="toggleTimeSettings()" :class="{active: customTimeSettings.value}">
@@ -500,15 +501,15 @@
 								<div class="alt-time-options">
 									<div class="settings-title">LT{{index + 1}} Times</div>
 									<div class="settings-inputs">
-										<input type="number" placeholder="in-out" tabindex="12" v-model="animationTime.value" @change="$emit('styleChanged');">
-										<input type="number" placeholder="active" tabindex="13" v-model="activeTime.value" :disabled="lockActive.value" @change="$emit('styleChanged');">
+										<input :id="`alt-${index}-animation-time`" type="number" placeholder="in-out" tabindex="12" v-model="animationTime.value" @change="$emit('styleChanged');">
+										<input :id="`alt-${index}-active-time`" type="number" placeholder="active" tabindex="13" v-model="activeTime.value" :disabled="lockActive.value" @change="$emit('styleChanged');">
 										<label class="config-btn lock-input">
-											<input type="checkbox" id="alt-1-lock-active" v-model="lockActive.value" @change="$emit('styleChanged');">
+											<input :id="`alt-${index}-lock-active`" type="checkbox" v-model="lockActive.value" @change="$emit('styleChanged');">
 											<div class="icon-btn icon icon-lock"></div>
 										</label>
-										<input id="alt-1-inactive-time" type="number" placeholder="inactive" tabindex="14" v-model="inactiveTime.value" :disabled="oneShot.value" @change="$emit('styleChanged');">
+										<input :id="`alt-${index}-inactive-time`" type="number" placeholder="inactive" tabindex="14" v-model="inactiveTime.value" :disabled="oneShot.value" @change="$emit('styleChanged');">
 										<label class="config-btn lock-input">
-											<input type="checkbox" id="alt-1-oneshot" v-model="oneShot.value" @change="$emit('styleChanged');">
+											<input :id="`alt-${index}-oneshot`" type="checkbox" v-model="oneShot.value" @change="$emit('styleChanged');">
 											<div class="icon-btn icon icon-oneshot"></div>
 										</label>
 									</div>
@@ -527,7 +528,7 @@
 					<div class="form-input">
 						<div class="file-btns">
 							<label for="logo-file">Choose image</label>
-							<input type="file" id="logo-file" accept="image/*" @change="showPreview">
+							<input id="logo-file" type="file" accept="image/*" @change="showPreview">
 							<div class="btn-remove" @click="removeLogo()" v-show="!isDefault"><div class="icon-btn icon icon-trash"></div></div>
 						</div>
 						<div id="file-preview" :class="{'no-image': !previewSrc}">
