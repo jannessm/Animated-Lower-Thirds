@@ -473,7 +473,8 @@
 						<div class="panel-bottom">
 							<div :id="`alt-${index}-clean`" class="clean" @click="clearInputs"><div class="icon icon-cross"></div></div>
 							<ul>
-								<li v-for="(name, index) in slotNames.value"
+								<li :id="`alt-${index}-slot-${index + 1}`"
+									v-for="(name, index) in slotNames.value"
 									:class="{delete: slotIsDelete[index], 'active-slot': slotIsActive(index), stored: slotIsStored(index)}"
 									@mouseDown="slotHandlerDown(index)"
 									@mouseUp="slotHandlerUp(index)"
