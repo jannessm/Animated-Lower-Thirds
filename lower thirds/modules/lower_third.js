@@ -91,7 +91,12 @@ const LowerThird = {
       props.storables.push(key);
     });
 
-    return {...storables, ...props};
+    const data = {
+      isDefaultLogo: ref(false),
+      // ... other data properties ...
+    };
+
+    return {...data, ...storables, ...props};
   },
   computed: {
     slotTooltips() {
@@ -188,7 +193,7 @@ const LowerThird = {
     clearInputs() {
       this.name.value = '';
       this.info.value = '';
-      this.isDefaultLogo.value = true;
+      this.isDefaultLogo = true;
       this.$emit('resetLogo');
     },
     slotHandlerDown(index) {
@@ -205,7 +210,7 @@ const LowerThird = {
       if (!this.slotIsDelete[index] && !this.slotIsStored(index)) {
         this.slotNames.value[index] = this.name.value;
         this.slotInfos.value[index] = this.info.value;
-        this.slotLogos.value[index] = this.isDefaultLogo.value ? '' : this.logoSrc.value;
+        this.slotLogos.value[index] = this.isDefaultLogo ? '' : this.logoSrc.value;
         this.slotIndex = index;
       // load Slot
       } else if (!this.slotIsDelete[index]) {
@@ -237,10 +242,10 @@ const LowerThird = {
     loadSlot(index) {
       this.slotIndex = index;
       this.name.value = this.slotNames.value[index];
-      this.info.name = this.slotInfos.value[index];
-      this.isDefaultLogo.value = this.slotLogos.value[index] == '';
+      this.info.value = this.slotInfos.value[index];
+      this.isDefaultLogo = this.slotLogos.value[index] == '';
 
-      if (!this.isDefaultLogo.value) {
+      if (!this.isDefaultLogo) {
         this.logoSrc.value = this.slotLogos.value[index];
       } else {
         this.$emit('resetLogo');
