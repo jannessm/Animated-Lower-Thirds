@@ -92,7 +92,7 @@ const LowerThird = {
     });
 
     const data = {
-      isDefaultLogo: ref(false),
+      isDefaultLogo: ref(true),
       // ... other data properties ...
     };
 
