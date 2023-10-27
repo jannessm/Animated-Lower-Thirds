@@ -62,6 +62,7 @@ body.browser-source.lower-thirds{
 
 /*Main settings panel*/
 #alt-main-config-content > div {
+  background-color: var(--obs-panel);
   box-shadow: inset 0px 0px 5px 0px rgb(0 0 0 / 20%);
   border: var(--obs-panel-border);
   border-radius: var(--element-radius);
@@ -117,7 +118,7 @@ body.browser-source.lower-thirds{
   margin-bottom: 5px;
 }
 #global-configuration #theme-options #theme {
-  width: 100%;
+  width: 95%;
   text-transform: capitalize;
 }
 .settings-title{
@@ -1108,7 +1109,7 @@ i.alt-icon {
 }
 .slot-number {
   visibility: visible!important;
-  color: var(--obs-field-background);
+  color: var(--obs-button-color);
   font-weight: 700;
   width: 15px;
   height: 15px;
@@ -1126,7 +1127,7 @@ i.alt-icon {
   color: var(--main-color);
 }
 .stored.active-slot .slot-number {
-  color: var(--obs-field-background);
+  color: var(--obs-button-alt-color);
 }
 
 .panel-bottom > ul > li .tooltiptext {
@@ -1183,7 +1184,7 @@ i.alt-icon {
 .ui-widget-content {
 	border: 1px solid #c5c5c5;
 	background: #ffffff;
-	color: var(--obs-field-background);
+	color: #1f1e1f;
 }
 .ui-widget-shadow {
   -webkit-box-shadow: 2px 2px 5px rgb(0 0 0 / 30%);
@@ -1421,27 +1422,30 @@ i.alt-icon {
 .logo-default {
   margin-left: 1px;
 }
-
 .divider {
   height: 1px;
   background-color: var(--obs-scrollbar-color);
   width: 100%;
   margin: 5px 0 10px;
 }
-
-
 input.locked + .icon-btn {
   pointer-events: none;
   user-select: none;
   background-color: var(--main-color);
 }
-
+#tab-appearance {
+  padding-top: 10px;
+  margin-top: 5px;
+}
+#tab-system, #tab-customs {
+  padding: 5px;
+  margin: 5px; 
+}
 .tab {
   display: flex;
   justify-content: space-between;
   margin-top: 5px;
   border-bottom: 1px solid var(--obs-tabs-separator);
-  margin-bottom: 10px;
 }
 .tablinks {
   cursor: pointer;

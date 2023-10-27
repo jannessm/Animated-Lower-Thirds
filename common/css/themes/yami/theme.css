@@ -1,34 +1,38 @@
 /*
-Updated 27.10.2023 09:11
+  Theme: Yami
+  Updated 27.10.2023 11:25
 */
 :root {
   --main-color: #fff;
-  --element-radius: 0;
-  --obs-background: #101010; /*ok*/
-  --obs-panel: #181819; /*new*/
-  --obs-button-background: #162458;
-  --obs-button-alt-background: #161f41; /*new*/
+  --element-radius: 2px;
+  --obs-panel-font: normal 12px -apple-system, BlinkMacSystemFont, 'Open Sans', '.AppleSystemUIFont', Helvetica, Arial, 'MS Shell Dlg', sans-serif;
+  --obs-background: #1f212a;
+  --obs-panel: #2b2e38;
+  --obs-button-background: #3c404b;
+  --obs-button-alt-background: #161f41;
   --obs-button-border: #233166;
-  --obs-button-hover-background: #2a3a75; /*ok*/
-  --obs-button-hover-border: none; /*ok*/
+  --obs-button-hover-background: #4f535e;
+  --obs-button-hover-border: none;
   --obs-button-active-background: #1f1e1f;
-  --obs-switch-active-background: #244ee7;
+  --obs-switch-active-background: #23405f;
   --obs-button-color: #fefefe;
   --obs-button-alt-color: #bed8f2;
   --obs-button-disable-color: #5c5959;
-  --obs-tooltip-color: #28282a; /*ok*/
-  --obs-field-background: #28282a; /*ok*/
-  --obs-field-background-disable: #28282a; /*ok*/
-  --obs-field-border: none;
+  --obs-tooltip-color: #28282a;
+  --obs-select-background-focus: #191b26;
+  --obs-field-background: #3c404b;
+  --obs-field-background-disable: #db271a;
+  --obs-field-border-focus: #284cb8;
+  --obs-field-border-hover: #63666f;
   --obs-panel-border: none;
   --obs-scrollbar-color: #28282a;
   --obs-scrollbar-thickness: 7px;
   --obs-scrollbar-radius: 0px;
-  --obs-tab-background: #212121;
-  --obs-tab-border: none;  /*ok*/
-  --obs-tab-active-background: #162458;  /*ok*/
+  --obs-tab-background: #2b2e38;
+  --obs-tab-border: none;
+  --obs-tab-active-background: #3c404b;
   --obs-tab-active-border: #252a45;
-  --obs-tabs-separator: #333336;
+  --obs-tabs-separator: #2b2e38;
   --alt-preview-background: linear-gradient(135deg, #0b0b0c 0%,
                                                     #0b0b0c 8%,
                                                     #08080b 10%,
@@ -50,6 +54,10 @@ Updated 27.10.2023 09:11
                                                     #08080b 90%, 
                                                     #08080b 98%, 
                                                     #0b0b0c 100%);
+}
+
+.panel {
+  font: var(--obs-panel-font) ;
 }
 .panel-bottom label[title] {
   color: var(--obs-tooltip-color) ;
@@ -82,7 +90,7 @@ Updated 27.10.2023 09:11
   background: var(--obs-button-color) ;
 }
 #alt-panel > #alt-main-config-content > div {
-  background: var(--obs-panel);
+  background: var(--obs-background);
   border-radius: 3px;
 }
 #sortable > div[id^="alt-"].sortees > div[id^="alt-"][id$="-config-content"] > div {
@@ -97,12 +105,38 @@ Updated 27.10.2023 09:11
 .panel button.active:hover {
 	background: var(--obs-tab-active-background);
 }
-.panel .btn-settings:hover, .panel .import-file-btn > label:hover {
+.panel .btn-settings:hover {
+	background: var(--obs-button-hover-background);
+}
+.panel .import-file-btn > label:hover {
 	background: var(--obs-button-hover-background);
 }
 .panel input:focus, .panel select:focus, .panel .logo-container:focus {
 	background: var(--obs-background);
+  border: 1px solid var(--obs-field-border-focus);
+  border-radius: 1px;
 }
 .panel input, .panel select, .panel .logo-container {
 	background: var(--obs-field-background);
+}
+#tab-appearance {
+  background-color: var(--obs-panel);
+  border-radius: 3px;
+}
+#global-configuration #theme-options #theme:focus {
+  background-color: var(--obs-select-background-focus);
+  border: none;
+}
+
+.tab {
+  position: relative; /* Make sure the parent element is positioned */
+  border-bottom: 2px solid var(--obs-tabs-separator);
+}
+.tab:after {
+  content: "";
+  display: block;
+  border-bottom: 1px solid var(--obs-background);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
