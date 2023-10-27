@@ -1,0 +1,242 @@
+/*
+  Theme: System
+  Updated 27.10.2023 09:11
+*/
+:root {
+  --main-color: #000000;
+  --placeholder-color: #d2d2d2;
+  --obs-color-disable: #828282;
+  --element-radius: 0px;
+  --obs-panel: #f0f0f0;
+  --obs-background: #f0f0f0;
+  --obs-background-alt: #ffffff;
+  --obs-button-background: #e1e1e1;
+  --obs-button-background-alt: #d8eaf9;
+  --obs-button-background-hover: #0f0f0f;
+  --obs-button-border-hover: #0c7ed8;
+  --obs-switch-background-active: #23405f;
+  --obs-button-border: #233166;
+  --obs-button-color: #0f0f0f;
+  --obs-button-color-alt: #bed8f2;
+  --obs-button-color-disable: #5c5959;
+  --obs-tooltip-color: #28282a;
+  --obs-select-background: #e1e1e1;
+  --obs-select-background-focus: #d8eaf9;
+  --obs-field-color: #0f0f0f;
+  --obs-field-background: #ffffff;
+  --obs-field-background-disable: #e2e6e9;
+  --obs-field-border-focus: #284cb8;
+  --obs-field-border: #7a7a7a;
+  --obs-field-border-hover: #63666f;
+  --obs-panel-border-color:#d9d9d9;
+  --obs-panel-border-width:0.5px;
+  --obs-panel-font: normal 12px -apple-system, BlinkMacSystemFont, 'Open Sans', '.AppleSystemUIFont', Helvetica, Arial, 'MS Shell Dlg', sans-serif;
+  --obs-scrollbar-color: #28282a;
+  --obs-scrollbar-thickness: 7px;
+  --obs-scrollbar-radius: 0px;
+  --obs-tab-background-hover: #d8eaf9;
+  --obs-tab-background-active: #fff;
+  --obs-tab-background: #f0f0f0;
+  --obs-tab-border-active: #252a45;
+  --obs-tab-border: #284cb8;
+  --obs-tabs-separator: #2b2e38;
+  --alt-preview-background: linear-gradient(135deg, #0b0b0c 0%,
+                                                    #0b0b0c 8%,
+                                                    #08080b 10%,
+                                                    #08080b 18%, 
+                                                    #0b0b0c 20%, 
+                                                    #0b0b0c 28%, 
+                                                    #08080b 30%, 
+                                                    #08080b 38%, 
+                                                    #0b0b0c 40%, 
+                                                    #0b0b0c 48%, 
+                                                    #08080b 50%, 
+                                                    #08080b 58%, 
+                                                    #0b0b0c 60%,
+                                                    #0b0b0c 68%, 
+                                                    #08080b 70%, 
+                                                    #08080b 78%, 
+                                                    #0b0b0c 80%, 
+                                                    #0b0b0c 88%, 
+                                                    #08080b 90%, 
+                                                    #08080b 98%, 
+                                                    #0b0b0c 100%);
+}
+.ui-widget-content {
+	color: var(--obs-tooltip-color);
+}
+input::placeholder {
+  color: var(--placeholder-color);
+}
+input:checked + .icon-btn:hover {
+	background: var(--obs-button-background-hover);
+  border: 0.5px solid var(--obs-button-border-hover);
+}
+.panel {
+  font: var(--obs-panel-font) ;
+}
+.panel-bottom > ul > li > div {
+  visibility: hidden !important;
+}
+.panel-bottom > ul > li.stored > div {
+  visibility: visible !important;
+}
+.panel-bottom > ul > li.stored {
+  background: var(--obs-button-background-alt) ;
+  border: none;
+}
+.panel-bottom > ul > li.active-slot {
+  background: var(--obs-button-background) ;
+  color: var(--obs-button-color-alt) ;
+  border: none;;
+}
+.panel-bottom > .config-btn > input + .icon {
+  background: var(--obs-button-color-disable);
+}
+.panel-bottom > .config-btn > input:checked + .icon {
+  background: var(--obs-button-color) ;
+}
+.panel-bottom > label[id^="alt-"][id$="-custom-times"] > .icon {
+  background: var(--obs-button-color-disable);
+}
+.panel-bottom > label[id^="alt-"][id$="-custom-times"].active > .icon {
+  background: var(--obs-button-color);
+}
+#alt-panel > #alt-main-config-content > div {
+  box-shadow: none;
+  background: var(--obs-background);
+  border-radius: var(--element-radius);
+  border-width: var(--obs-panel-border-width) var(--obs-panel-border-width) var(--obs-panel-border-width) var(--obs-panel-border-width) var(--obs-panel-border-width); /* top left right none */
+  border-style: solid;
+  border-color: var(--obs-panel-border-color);
+}
+#sortable > div[id^="alt-"].sortees > div[id^="alt-"][id$="-config-content"] > div > .first-edit-container > .textfields-container > input {
+  border-width: 0.5px 0px 0.5px 0.5px; /* top left right none */
+  border-style: solid;
+  border-color: var(--obs-panel-border-color);
+}
+#sortable > div[id^="alt-"].sortees > div[id^="alt-"][id$="-config-content"] > div > .first-edit-container > .textfields-container > div[id^="alt-"][id$="-name-appearance"],
+#sortable > div[id^="alt-"].sortees > div[id^="alt-"][id$="-config-content"] > div > .first-edit-container > .textfields-container > div[id^="alt-"][id$="-info-appearance"] {
+  border-width: 0.5px 0.5px 0.5px 0px; /* top left right none */
+  border-style: solid;
+  border-color: var(--obs-panel-border-color);
+}
+#sortable > div[id^="alt-"].sortees > div[id^="alt-"][id$="-config-content"] > div {
+  background: var(--obs-panel);
+}
+.panel button.active {
+	border-bottom: 2px solid var(--main-color);
+}
+.panel button.active:hover {
+	background: var(--obs-tab-background-active);
+}
+.panel button.active:hover {
+	background: var(--obs-tab-background-active);
+}
+.panel .btn-settings {
+  border: 0.5px solid var(--obs-background-alt);
+}
+.panel .import-file-btn > label  {
+  border: 0.5px solid var(--obs-background-alt);
+}
+#add-new-font > div:hover {
+  background: var(--obs-button-background-hover);
+}
+.panel .btn-settings:hover {
+	background: var(--obs-button-background-hover);
+  border: 0.5px solid var(--obs-button-border-hover);
+}
+.panel .import-file-btn > label:hover {
+	background: var(--obs-button-background-hover);
+  border: 0.5px solid var(--obs-button-border-hover);
+}
+.panel select {
+  color: var(--main-color);
+	background: var(--obs-select-background);
+  border: 0.5px solid var(--obs-field-border);
+}
+.panel input, .panel .logo-container {
+	background: var(--obs-field-background);
+  border: 0.5px solid var(--obs-field-border);
+}
+.panel input:focus, .panel select:focus, .panel .logo-container:focus {
+	background: var(--obs-field-background);
+  border: 0.5px solid var(--obs-field-border-focus);
+}
+#tab-system, #tab-customs {
+  padding: 5px; 
+  margin: 0; 
+}
+#tab-tools,
+#tab-system,
+#tab-customs,
+#tab-appearance {
+  background-color: var(--obs-background-alt);
+  padding-top: 15px;
+  margin-top: 0px;
+  border-width: 0.5px 0.5px 0.5px 0.5px;
+  border-style: solid;
+  border-color: var(--obs-panel-border-color); 
+  border-top: none;
+}
+#global-configuration #theme-options #theme:focus {
+  color: var(--main-color);
+  background-color: var(--obs-select-background-focus);
+  border: 0.5px solid none;
+}
+.number-input input[type="number"]:disabled, .number-input button:disabled,
+.panel input:disabled {
+  color: var(--obs-color-disable);
+  background: var(--obs-field-background-disable); 
+}
+.panel input {
+  color: var(--obs-field-color);
+}
+.tab {
+  border-bottom: none;
+  background: var(--obs-tab-background-active);
+}
+.tablinks:not(:last-child) {
+  margin-right: 0px!important;
+}
+.tablinks {
+  border-width: var(--obs-panel-border-width) var(--obs-panel-border-width) var(--obs-panel-border-width) var(--obs-panel-border-width); /* top left right none */
+  border-style: solid;
+  border-color:  var(--obs-panel-border-color); 
+  border-radius: var(--element-radius);
+}
+.panel button:hover,
+.tablinks:hover {
+  background: var(--obs-tab-background-hover);
+  border-width: var(--obs-panel-border-width) var(--obs-panel-border-width) var(--obs-panel-border-width) var(--obs-panel-border-width); /* top left right none */
+  border-style: solid;
+  border-color: var(--obs-tab-border); 
+  border-radius: var(--element-radius);
+}
+.panel button.active,
+.tablinks.active {
+  border-width: var(--obs-panel-border-width) var(--obs-panel-border-width) var(--obs-panel-border-width) var(--obs-panel-border-width); /* top left right none */
+  border-style: solid;
+  border-color:  var(--obs-panel-border-color); 
+  border-radius: var(--element-radius);
+  border-bottom: none;
+}
+.panel button.active:hover,
+.tablinks.active:hover {
+  border-width: var(--obs-panel-border-width) var(--obs-panel-border-width) var(--obs-panel-border-width) var(--obs-panel-border-width); /* top left right none */
+  border-style: solid;
+  border-color:  var(--obs-panel-border-color); 
+  border-radius: var(--element-radius);
+  border-bottom: none;
+}
+[id$=-config-content] > div {
+  box-shadow: none;
+  border: var(--obs-panel-border-color);
+  padding: 5px;
+  margin-bottom: 15px;
+  border-radius: var(--element-radius);
+  transition: background 0.5s;
+  border-width: var(--obs-panel-border-width) var(--obs-panel-border-width) var(--obs-panel-border-width) var(--obs-panel-border-width); /* top left right none */
+  border-style: solid;
+  border-color: var(--obs-panel-border-color);
+}
