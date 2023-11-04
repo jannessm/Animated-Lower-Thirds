@@ -28,12 +28,13 @@
   --obs-switch-active-background:       #4f535e;
   --obs-tooltip-color:                  #3c404b;
   --obs-select-background:              #3c404b;
+  --obs-select-hover-background:        #4f535e;
   --obs-select-focus-background:        #1f212a;
   --obs-field-color:                    #fff;
   --obs-field-background:               #3c404b;
   --obs-field-disable-background:       #1f212a;
   --obs-field-focus-border:             #8cb5ff;
-  --obs-field-hover-border:             #63666f;
+  --obs-field-hover-border:             #2b2e38;
   --obs-field-border:                   #2b2e38;
   --obs-scrollbar:                      #3c404b;
   --obs-scrollbar-thickness:            7px;
@@ -256,7 +257,8 @@ div[id^="alt-"][id$=-config-content] > div {
 .panel select {
   color: var(--obs-main-color);
 	background: var(--obs-select-background);
-  border: 0.5px solid var(--obs-field-border);
+  border: 0.5px solid var(--obs-field-border);    
+  padding: 1px 1px 1px 5px;
 }
 .panel input {
   color: var(--obs-field-color);
@@ -265,7 +267,11 @@ div[id^="alt-"][id$=-config-content] > div {
 	background: var(--obs-field-background);
   border: 0.5px solid var(--obs-field-border);
 }
-.panel input:hover, .panel select:hover, .panel .logo-container:hover {
+.panel select:hover {
+	background: var(--obs-select-hover-background);
+  border: 0.5px solid var(--obs-field-hover-border);
+}
+.panel input:hover, .panel .logo-container:hover {
 	background: var(--obs-field-background);
   border: 0.5px solid var(--obs-field-hover-border);
 }
@@ -276,7 +282,7 @@ div[id^="alt-"][id$=-config-content] > div {
 #global-configuration #theme-options #theme:focus {
   color: var(--obs-main-color);
   background-color: var(--obs-select-focus-background);
-  border: 0.5px solid none;
+  border: 0.5px solid var(--obs-field-hover-border);
 }
 .number-input input[type="number"]:disabled, .number-input button:disabled,
 .panel input:disabled {
