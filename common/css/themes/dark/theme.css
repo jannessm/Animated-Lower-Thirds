@@ -1,46 +1,397 @@
+/*
+  Theme: Dark
+  Updated 04.11.2023 16:49
+*/
 :root {
-  --main-color: #d2d2d2;
-  --element-radius: 0.2em;
-  --obs-background: #3a393a; 
-  --obs-button-background: #4c4c4c;
-  --obs-button-border: none;
-  --obs-button-hover-background: #7a797a;
-  --obs-button-hover-border: none;
-  --obs-button-active-background: #1f1e1f;
-  --obs-switch-active-background: #2196F3;
-  --obs-button-color: #fff;
-  --obs-field-background: #1f1e1f;
-  --obs-field-background-disable: #4c4c4c;
-  --obs-field-border: none;
-  --obs-panel-border: solid 1px #2f2f2f;
-  --obs-scrollbar-color: #4c4c4c;
-  --obs-scrollbar-thickness: 10px;
-  --obs-scrollbar-radius: 16px;
-  --obs-tab-background:  #4c4c4c;
-  --obs-tab-border:  none;
-  --obs-tab-active-background: #1f1e1f;
-  --obs-tab-active-border: none;
-  --obs-tabs-separator: #1f1e1f;
+  --obs-main-color:                     #d2d2d2;
+  --obs-main-alt-color:                 #d2d2d2;
+  --obs-placeholder-color:              #b9b9b9;
+  --obs-disable-color:                  #828282;
+  --obs-element-radius:                 0.2em;
+  --obs-panel-main:                     none;
+  --obs-panel-alt-main:                 #3a393a;
+  --obs-panel:                          #3a393a;
+  --obs-panel-border:                   #1f1e1f;;
+  --obs-panel-border-width:             1px;
+  --obs-panel-font:                     normal 12px -apple-system, BlinkMacSystemFont, 'Open Sans', '.AppleSystemUIFont', Helvetica, Arial, 'MS Shell Dlg', sans-serif;
+  --obs-background:                     #3a393a;
+  --obs-background-alt:                 #3a393a;
+  --obs-button-background:              #4c4c4c;
+  --obs-button-alt-background:          #7a797a;
+  --obs-button-active-background:       #1f1e1f;
+  --obs-button-hover-background:        #7a797a;
+  --obs-button-hover-border:            #7a797a;
+  --obs-button-border:                  #4c4c4c;
+  --obs-button-color:                   #fff;
+  --obs-button-alt-color:               #bed8f2;
+  --obs-button-color-disable:           #5c5959;
+  --obs-switch-active-background:       #2196F3;
+  --obs-tooltip-color:                  #3c404b;
+  --obs-select-background:              #1f1e1f;
+  --obs-select-hover-background:        #1f1e1f;
+  --obs-select-focus-background:        #1f1e1f;
+  --obs-field-color:                    #fff;
+  --obs-field-background:               #1f1e1f;
+  --obs-field-disable-background:       #4c4c4c;
+  --obs-field-focus-border:             #3a393a;
+  --obs-field-hover-border:             #3a393a;
+  --obs-field-border:                   #3a393a;
+  --obs-scrollbar:                      #4c4c4c;
+  --obs-scrollbar-thickness:            10px;
+  --obs-scrollbar-radius:               16px;
+  --obs-tab-background:                 #4c4c4c;
+  --obs-tab-hover-background:           #7a797a;
+  --obs-tab-active-hover-background:    #7a797a;
+  --obs-tab-active-background:          #1f1e1f;
+  --obs-tab-border:                     none;
+  --obs-tab-hover-border:               #7a797a;
+  --obs-tab-active-border:              none;
+  --obs-tab-active-hover-border:        #7a797a;
+  --obs-tab-separator-thickness:        3px;
+  --obs-tab-appearance-margin-top:      3px;
+  --obs-tabs-separator-thickness:       1px;
+  --obs-tabs-separator-padding-bottom:  1px;
+  --obs-tabs-separator:                 #1f1e1f;
+  --obs-checkbox-border:                #3a393a;
+  --obs-checkbox-hover-border:          #fff;
+  --obs-checkbox-background:            #fff;
+  --obs-checkbox-color:                 #1f1e1f;
+  --obs-main-active-shadow:             #0095ff;
+  --obs-main-inactive-shadow:           #ff0d0d;
+  --obs-main-disabled-shadow:           rgb(0 0 0 / 20%);
+  --obs-panel-active-shadow:            #0095ff;
+  --obs-panel-inactive-shadow:          #ff0d0d;
+  --obs-panel-disabled-shadow:          rgb(0 0 0 / 20%);
+  --obs-main-box-shadow:                none;
+  --obs-panel-box-shadow:               none;
+  --obs-panel-inactive-box-shadow:      none;
+  --obs-panel-active-box-shadow:        none;
+  --obs-alt-preview-background:   linear-gradient(
+                                  135deg, 
+                                  #0b0b0c 0%,
+                                  #0b0b0c 8%,
+                                  #08080b 10%,
+                                  #08080b 18%, 
+                                  #0b0b0c 20%, 
+                                  #0b0b0c 28%, 
+                                  #08080b 30%, 
+                                  #08080b 38%, 
+                                  #0b0b0c 40%, 
+                                  #0b0b0c 48%, 
+                                  #08080b 50%, 
+                                  #08080b 58%, 
+                                  #0b0b0c 60%,
+                                  #0b0b0c 68%, 
+                                  #08080b 70%, 
+                                  #08080b 78%, 
+                                  #0b0b0c 80%, 
+                                  #0b0b0c 88%, 
+                                  #08080b 90%, 
+                                  #08080b 98%, 
+                                  #0b0b0c 100%
+                                  );
+}
+input:checked + .slider::after {
+	background-color: var(--obs-main-color);
+}
+input + .slider::after {
+	background-color: var(--obs-disable-color);
+}
+#tab-appearance .settings-inputs label > input[type="checkbox"] {
+  /* Add if not using autoprefixer */
+  -webkit-appearance: none;
+  /* Remove most all native input styles */
+  appearance: none;
+  /* For iOS < 15 */
+  background-color: var(--obs-checkbox-background);
+  /* Not removed via appearance */
+  margin: 0;
+  font-weight: normal;
+  font: var(--obs-panel-font);
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.5px solid var(--obs-checkbox-border);
+  border-radius: 0.15em;
+  transform: translateY(-0.075em);
+  display: grid;
+  place-content: center;
+  margin-right: 5px;
+}
+#tab-appearance .settings-inputs label > input[type="checkbox"]::before {
+  box-sizing: border-box;
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  clip-path: polygon(10% 53%, 2% 68%, 38% 100%, 100% 9%, 87% 0.17%, 34% 78%); 
+  transform: scale(0);
+  transform-origin: bottom left;
+  transition: 120ms transform ease-in-out;
+  background-color: var(--obs-checkbox-color);
+}
+#tab-appearance .settings-inputs label > input[type="checkbox"]:checked::before {
+  box-sizing: border-box;
+  transform: scale(1);
+}
+#tab-appearance .settings-inputs label > input[type="checkbox"]:focus {
+}
+#tab-appearance .settings-inputs label > input[type="checkbox"]:disabled {
+  color: var(--obs-field-disable-background);
+  cursor: not-allowed;
+}
+.ui-widget-content {
+	color: var(--obs-tooltip-color);
+}
+input::placeholder {
+  color: var(--obs-placeholder-color);
+}
+input:checked + .icon-btn:hover {
+	background: var(--obs-button-hover-background);
+}
+.panel {
+  font: var(--obs-panel-font) ;
+}
+.panel-bottom > ul > li > div {
+  visibility: hidden !important;
+}
+.panel-bottom > ul > li.stored > div {
+  visibility: visible !important;
+}
+.panel-bottom > ul > li.stored {
+  background: var(--obs-button-alt-background) ;
+  border: none;
+}
+.panel-bottom > ul > li.active-slot {
+  background: var(--obs-button-background) ;
+  color: var(--obs-button-alt-color) ;
+  border: none;
+}
+.panel-bottom > .config-btn > input + .icon {
+  background: var(--obs-button-color-disable);
+}
+.panel-bottom > .config-btn > input:checked + .icon {
+  background: var(--obs-button-color) ;
+}
+.panel-bottom > label[id^="alt-"][id$="-custom-times"] > .icon {
+  background: var(--obs-button-color-disable);
+}
+.panel-bottom > label[id^="alt-"][id$="-custom-times"].active > .icon {
+  background: var(--obs-button-color);
+}
+#time-options {
+  padding: 5px;
+  background: var(--obs-panel-alt-main);
+}
+#main-settings {
+  background: var(--obs-panel-alt-main);
+  width:100%;
+  height: 25px;
+  border-radius: var(--obs-element-radius) var(--obs-element-radius) var(--obs-element-radius) var(--obs-element-radius); 
+}
+#main-settings.active {
+  border-radius: var(--obs-element-radius) var(--obs-element-radius) 0 0; 
+}
+#global-configuration.hidable {
+  margin-top: 0px;
+}
+#alt-panel > #alt-main-config-content > div.active,
+#alt-panel > #alt-main-config-content > div {
+  min-height: 25px;
+  background: var(--obs-panel-main);
+  padding: 0px;
+  border-radius: var(--obs-element-radius);
+  border-width: var(--obs-panel-border-width) var(--obs-panel-border-width) var(--obs-panel-border-width) var(--obs-panel-border-width); 
+  border-style: solid;
+  border-color: var(--obs-panel-border);
+}
+[id$=-config-content] > div,
+div[id^="alt-"][id$=-config-content] > div {
+  border: var(--obs-panel-border);
+  padding: 5px;
+  margin-bottom: 15px;
+  border-radius: var(--obs-element-radius);
+  transition: background 0.5s;
+  border-width: var(--obs-panel-border-width) var(--obs-panel-border-width) var(--obs-panel-border-width) var(--obs-panel-border-width); 
+  border-style: solid;
+  border-color: var(--obs-panel-border);
+}
+#sortable > div[id^="alt-"].sortees > div[id^="alt-"][id$="-config-content"] > div > .first-edit-container > .textfields-container > input {
+  border-width: 0.5px 0px 0.5px 0.5px; 
+  border-style: solid;
+  border-color: var(--obs-field-border);
+}
+#sortable > div[id^="alt-"].sortees > div[id^="alt-"][id$="-config-content"] > div > .first-edit-container > .textfields-container > div[id^="alt-"][id$="-name-appearance"],
+#sortable > div[id^="alt-"].sortees > div[id^="alt-"][id$="-config-content"] > div > .first-edit-container > .textfields-container > div[id^="alt-"][id$="-info-appearance"] {
+  background: var(--obs-field-background);
+  border-width: 0.5px 0.5px 0.5px 0px; 
+  border-style: solid;
+  border-color: var(--obs-field-border);
+}
+#sortable > div[id^="alt-"].sortees > div[id^="alt-"][id$="-config-content"] > div {
+  background: var(--obs-panel);
+}
+.panel button.active {
+	background: var(--obs-tab-active-background);
+	border-bottom: 2px solid var(--obs-main-color);
+}
+.panel button.active:hover {
+	background: var(--obs-tab-active-hover-background);
+}
+.panel .btn-settings {
+  border: 0.5px solid var(--obs-background-alt);
+}
+.panel .btn-settings:hover {
+	background: var(--obs-button-hover-background);
+  border: 0.5px solid var(--obs-button-hover-border);
+}
+.panel .import-file-btn > label  {
+  border: 0.5px solid var(--obs-background-alt);
+}
+.panel .import-file-btn > label:hover {
+	background: var(--obs-button-hover-background);
+  border: 0.5px solid var(--obs-button-hover-border);
+}
+#add-new-font > div:hover {
+  background: var(--obs-button-hover-background);
+}
+.panel select {
+  color: var(--obs-main-color);
+	background: var(--obs-select-background);
+  border: 0.5px solid var(--obs-field-border);
+  padding: 1px 1px 1px 5px;
+}
+.panel input {
+  color: var(--obs-field-color);
+}
+.panel input, .panel .logo-container {
+	background: var(--obs-field-background);
+  border: 0.5px solid var(--obs-field-border);
+}
+.panel select:hover {
+	background: var(--obs-select-hover-background);
+  border: 0.5px solid var(--obs-field-hover-border);
+}
+.panel input:hover, .panel .logo-container:hover {
+	background: var(--obs-field-background);
+  border: 0.5px solid var(--obs-field-hover-border);
+}
+.panel input:focus, .panel select:focus, .panel .logo-container:focus {
+	background: var(--obs-field-background);
+  border: 0.5px solid var(--obs-field-focus-border);
+}
+#global-configuration #theme-options #theme:focus {
+  color: var(--obs-main-color);
+  background-color: var(--obs-select-focus-background);
+  border: 0.5px solid var(--obs-field-focus-border);
+}
+.number-input input[type="number"]:disabled, .number-input button:disabled,
+.panel input:disabled {
+  color: var(--obs-disable-color);
+  background: var(--obs-field-disable-background); 
+}
+.tab {
+  padding-bottom: var(--obs-tabs-separator-padding-bottom);
+  border-bottom: var(--obs-tabs-separator-thickness) solid var(--obs-tabs-separator);
+}
+#tab-system, #tab-customs {
+  padding: 5px; 
+  margin: 0; 
+}
+#tab-tools,
+#tab-system,
+#tab-customs,
+#tab-appearance {
+  background-color: var(--obs-background-alt);
+  padding-top: 15px;
+  padding-bottom: 5px;
+  margin-top: var(--obs-tab-appearance-margin-top);
+  border: none;
+  border-radius: var(--obs-element-radius) var(--obs-element-radius) var(--obs-element-radius) var(--obs-element-radius); 
+}
+.tablinks:not(:last-child) {
+  margin-right: var(--obs-tab-separator-thickness)!important;
+}
+.tablinks {
+  border-width: var(--obs-panel-border-width) var(--obs-panel-border-width) var(--obs-panel-border-width) var(--obs-panel-border-width); 
+  border-color:  var(--obs-tab-border); 
+  border-radius: var(--obs-element-radius) var(--obs-element-radius) 0 0; 
+}
+.panel button:hover,
+.tablinks:hover {
+  background: var(--obs-tab-hover-background);
+  border-width: var(--obs-panel-border-width) var(--obs-panel-border-width) var(--obs-panel-border-width) var(--obs-panel-border-width); 
+  border-color: var(--obs-tab-hover-border); 
+  border-radius: var(--obs-element-radius) var(--obs-element-radius) 0 0; 
+}
+.panel button.active,
+.tablinks.active {
+  border-width: var(--obs-panel-border-width) var(--obs-panel-border-width) var(--obs-panel-border-width) var(--obs-panel-border-width); 
+  border-color:  var(--obs-tab-border); 
+  border-radius: var(--obs-element-radius) var(--obs-element-radius) 0 0; 
+  border-bottom: 2px solid var(--obs-tab-active-border);
+}
+.panel button.active:hover,
+.tablinks.active:hover {
+  border-width: var(--obs-panel-border-width) var(--obs-panel-border-width) var(--obs-panel-border-width) var(--obs-panel-border-width); 
+  border-color:  var(--obs-tab-border); 
+  border-radius: var(--obs-element-radius) var(--obs-element-radius) 0 0; 
+  border-bottom: 2px solid var(--obs-tab-active-hover-border);
+}
 
-  --alt-preview-background: linear-gradient(135deg, rgba(31,30,31,1) 0%,
-                                                    rgba(31,30,31,1) 8%,
-                                                    rgba(29,28,29,1) 10%,
-                                                    rgba(29,28,29,1) 18%, 
-                                                    rgba(31,30,31,1) 20%, 
-                                                    rgba(31,30,31,1) 28%, 
-                                                    rgba(29,28,29,1) 30%, 
-                                                    rgba(29,28,29,1) 38%, 
-                                                    rgba(31,30,31,1) 40%, 
-                                                    rgba(31,30,31,1) 48%, 
-                                                    rgba(29,28,29,1) 50%, 
-                                                    rgba(29,28,29,1) 58%, 
-                                                    rgba(31,30,31,1) 60%,
-                                                    rgba(31,30,31,1) 68%, 
-                                                    rgba(29,28,29,1) 70%, 
-                                                    rgba(29,28,29,1) 78%, 
-                                                    rgba(31,30,31,1) 80%, 
-                                                    rgba(31,30,31,1) 88%, 
-                                                    rgba(29,28,29,1) 90%, 
-                                                    rgba(29,28,29,1) 98%, 
-                                                    rgba(31,30,31,1) 100%);
+/* LT Inactive */
+#sortable > div[id^="alt-"].sortees > div[id^="alt-"][id$=-config-content] > div {
+  box-shadow: none;
+  padding: 5px;
+  margin-bottom: 15px;
+  border-radius: 3px;
+  transition: background 0.5s;
+}
+
+/* LT Disabled */
+#sortable > div[id^="alt-"].sortees > div[id^="alt-"][id$=-config-content] > div.inactive {
+  box-shadow: 0px 0px 2px 0px rgb(255,231,231),
+            0px 0px 12px 0px var(--obs-panel-inactive-shadow);
+  border-radius: 3px;
+}
+
+/* LT Active */
+#sortable > div[id^="alt-"].sortees > div[id^="alt-"][id$=-config-content] > div.active {
+  box-shadow: 0px 0px 2px 0px rgb(222, 240, 255),
+            0px 0px 12px 0px var(--obs-panel-active-shadow);
+  border-radius: 3px;
+}
+
+/* main Inactive */
+#alt-main-config-content > div {
+  background-color: var(--obs-panel);
+  box-shadow: inset 0px 0px 5px 0px var(--obs-panel-disabled-shadow);
+  border: var(--obs-panel-border);
+  border-radius: var(--obs-element-radius);
+  padding: 5px;
+  margin-bottom: 15px;
+  transition: background 0.5s;
+  min-height: 15px;
+}
+
+/* Main Active */
+#alt-main-config-content > div.active {
+  box-shadow: 0px 0px 2px 0px rgb(222, 240, 255),
+            0px 0px 12px 0px var(--obs-panel-active-shadow);
+  border-radius: 3px;
+}
+#main-title, .alt-number-icon, .renameable {
+  color: var(--obs-main-alt-color);
+}
+.alt-number-icon {
+  float: left;
+  border-radius: 3px;
+  box-sizing: border-box;
+  color: var(--obs-main-color);;
+  width: 15px;
+  height: 15px;
+  line-height: 11px;
+  font-size: 9px;
+  font-weight: 900;
+  margin: 5px 6px;
+  text-align: center;
+  border: 2px solid var(--obs-main-alt-color);;
 }

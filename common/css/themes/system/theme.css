@@ -1,67 +1,67 @@
 /*
-  Theme: Rachni
-  Updated 01.11.2023 14:14
+  Theme: System
+  Updated 01.11.2023 21:32
 */
 :root {
-  --obs-main-color:                     #d2d2d2;
-  --obs-main-alt-color:                 #f06292;
-  --obs-placeholder-color:              #b9b9b9;
+  --obs-main-color:                     #000000;
+  --obs-main-alt-color:                 #000000;
+  --obs-placeholder-color:              #d2d2d2;
   --obs-disable-color:                  #828282;
-  --obs-element-radius:                 0.2em;
-  --obs-panel-main:                     none;
-  --obs-panel-alt-main:                 #3b4147;
-  --obs-panel:                          #3b4147;
-  --obs-panel-border:                   #31363b;
+  --obs-element-radius:                 0px;
+  --obs-panel-main:                     #f0f0f0;
+  --obs-panel-alt-main:                 #f0f0f0;
+  --obs-panel:                          #f0f0f0;
+  --obs-panel-border:                   #d9d9d9;
   --obs-panel-border-width:             0.5px;
   --obs-panel-font:                     normal 12px -apple-system, BlinkMacSystemFont, 'Open Sans', '.AppleSystemUIFont', Helvetica, Arial, 'MS Shell Dlg', sans-serif;
-  --obs-background:                     #31363B;
-  --obs-background-alt:                 #3b4147;
-  --obs-button-background:              #00BCD4;
-  --obs-button-alt-background:          #4f535e;
-  --obs-button-active-background:       #1f1e1f;
-  --obs-button-hover-background:        #914C67;
-  --obs-button-hover-border:            #914C67;
-  --obs-button-border:                  #76797C;
-  --obs-button-color:                   #fff;
+  --obs-background:                     #f0f0f0;
+  --obs-background-alt:                 #ffffff;
+  --obs-button-background:              #e1e1e1;
+  --obs-button-alt-background:          #d8eaf9;
+  --obs-button-active-background:       #3c404b;
+  --obs-button-hover-background:        #d8eaf9;
+  --obs-button-hover-border:            #0c7ed8;
+  --obs-button-border:                  #233166;
+  --obs-button-color:                   #0f0f0f; 
   --obs-button-alt-color:               #bed8f2;
-  --obs-button-color-disable:           #5c5959;
-  --obs-switch-active-background:       #00BCD4;
-  --obs-tooltip-color:                  #232629;
-  --obs-select-background:              #232629;
-  --obs-select-hover-background:        #1f212a;
-  --obs-select-focus-background:        #1f212a;
-  --obs-field-color:                    #fff;
-  --obs-field-background:               #232629;
-  --obs-field-disable-background:       #3f4448;
-  --obs-field-focus-border:             #8cb5ff;
-  --obs-field-hover-border:             #00bcd4;
-  --obs-field-border:                   #76797c;
-  --obs-scrollbar:                      #76797c;
-  --obs-scrollbar-thickness:            8px;
-  --obs-scrollbar-radius:               14px;
-  --obs-tab-background:                 #54575b;
-  --obs-tab-hover-background:           #914C67;
-  --obs-tab-active-background:          #00BCD4;
-  --obs-tab-active-hover-background:    #00BCD4;
-  --obs-tab-border:                     #54575b;
-  --obs-tab-hover-border:               #914C67;
-  --obs-tab-active-border:              #ffffff;
-  --obs-tab-active-hover-border:        #ffffff;
-  --obs-tab-separator-thickness:        3px;
-  --obs-tab-appearance-margin-top:      3px;
+  --obs-button-color-disable:           #5c5959; 
+  --obs-switch-active-background:       #23405f;
+  --obs-tooltip-color:                  #28282a;
+  --obs-select-background:              #e1e1e1;
+  --obs-select-hover-background:        #d8eaf9;
+  --obs-select-focus-background:        #d8eaf9;
+  --obs-field-color:                    #0f0f0f;
+  --obs-field-background:               #ffffff;
+  --obs-field-disable-background:       #e2e6e9;
+  --obs-field-focus-border:             #284cb8;
+  --obs-field-hover-border:             #0c7ed8;
+  --obs-field-border:                   #7a7a7a;
+  --obs-scrollbar:                      #28282a;
+  --obs-scrollbar-thickness:            7px;
+  --obs-scrollbar-radius:               0px;
+  --obs-tab-background:                 #f0f0f0;
+  --obs-tab-hover-background:           #d8eaf9;
+  --obs-tab-active-hover-background:    #d8eaf9;
+  --obs-tab-active-background:          #fff;
+  --obs-tab-border:                     #d9d9d9;
+  --obs-tab-hover-border:               #d9d9d9;
+  --obs-tab-active-border:              none;
+  --obs-tab-active-hover-border:        none;
+  --obs-tab-separator-thickness:        0px;
+  --obs-tab-appearance-margin-top:      0px;
   --obs-tabs-separator-thickness:       2px;
-  --obs-tabs-separator-padding-bottom:  1px;
-  --obs-tabs-separator:                 #232629;
+  --obs-tabs-separator-padding-bottom:  0px;
+  --obs-tabs-separator:                 #ffffff;
   --obs-checkbox-border:                #a0a0a4;
-  --obs-checkbox-hover-border:          #fff;
-  --obs-checkbox-background:            #1f212a;
-  --obs-checkbox-color:                 #a0a0a4;
+  --obs-checkbox-hover-border:          #0c7ed8;
+  --obs-checkbox-background:            #ffffff;
+  --obs-checkbox-color:                 #000000;
   --obs-main-active-shadow:             #0095ff;
   --obs-main-inactive-shadow:           #ff0d0d;
-  --obs-main-disabled-shadow:           rgb(0 0 0 / 20%);
+  --obs-main-disabled-shadow:           none;
   --obs-panel-active-shadow:            #0095ff;
   --obs-panel-inactive-shadow:          #ff0d0d;
-  --obs-panel-disabled-shadow:          rgb(0 0 0 / 20%);
+  --obs-panel-disabled-shadow:          none;
   --obs-main-box-shadow:                none;
   --obs-panel-box-shadow:               none;
   --obs-panel-inactive-box-shadow:      none;
@@ -123,13 +123,11 @@ input + .slider::after {
   content: "";
   width: 0.65em;
   height: 0.65em;
-  clip-path:  polygon(10% 53%, 2% 68%, 38% 100%, 100% 9%, 87% 0.17%, 34% 78%); 
+  clip-path: polygon(10% 53%, 2% 68%, 38% 100%, 100% 9%, 87% 0.17%, 34% 78%); 
   transform: scale(0);
   transform-origin: bottom left;
   transition: 120ms transform ease-in-out;
-  box-shadow: inset 1em 1em var(--obs-main-color);
-  /* Windows High Contrast Mode */
-  background-color: CanvasText;
+  background-color: var(--obs-checkbox-color);
 }
 #tab-appearance .settings-inputs label > input[type="checkbox"]:checked::before {
   box-sizing: border-box;
@@ -206,7 +204,9 @@ input:checked + .icon-btn:hover {
   border-style: solid;
   border-color: var(--obs-panel-border);
 }
-[id$=-config-content] > div,
+[id$=-config-content] > div {
+  box-shadow: inset 0px 0px 5px 0px var(--obs-panel-box-shadow);
+}
 div[id^="alt-"][id$=-config-content] > div {
   border: var(--obs-panel-border);
   padding: 5px;
@@ -267,8 +267,9 @@ div[id^="alt-"][id$=-config-content] > div {
 }
 .panel input, .panel .logo-container {
 	background: var(--obs-field-background);
-  border: 1px solid var(--obs-field-border);
-}.panel select:hover {
+  border: 0.5px solid var(--obs-field-border);
+}
+.panel select:hover {
 	background: var(--obs-select-hover-background);
   border: 0.5px solid var(--obs-field-hover-border);
 }
@@ -278,7 +279,7 @@ div[id^="alt-"][id$=-config-content] > div {
 }
 .panel input:focus, .panel select:focus, .panel .logo-container:focus {
 	background: var(--obs-field-background);
-  border: 1px solid var(--obs-field-focus-border);
+  border: 0.5px solid var(--obs-field-focus-border);
 }
 #global-configuration #theme-options #theme:focus {
   color: var(--obs-main-color);
@@ -292,7 +293,7 @@ div[id^="alt-"][id$=-config-content] > div {
 }
 .tab {
   padding-bottom: var(--obs-tabs-separator-padding-bottom);
-  border-bottom: 2px solid var(--obs-tabs-separator);
+  border-bottom: var(--obs-tabs-separator-thickness) solid var(--obs-tabs-separator);
 }
 #tab-system, #tab-customs {
   padding: 5px; 
@@ -341,7 +342,7 @@ div[id^="alt-"][id$=-config-content] > div {
 
 /* LT Inactive */
 #sortable > div[id^="alt-"].sortees > div[id^="alt-"][id$=-config-content] > div {
-  box-shadow: none;
+  box-shadow: inset 0px 0px 5px 0px var(--obs-panel-box-shadow);
   padding: 5px;
   margin-bottom: 15px;
   border-radius: 3px;
@@ -350,14 +351,14 @@ div[id^="alt-"][id$=-config-content] > div {
 
 /* LT Disabled */
 #sortable > div[id^="alt-"].sortees > div[id^="alt-"][id$=-config-content] > div.inactive {
-  box-shadow: 0px 0px 2px 0px rgb(255,231,231),
+  box-shadow: 0px 0px 2px 0px var(--obs-panel-inactive-box-shadow),
             0px 0px 12px 0px var(--obs-panel-inactive-shadow);
   border-radius: 3px;
 }
 
 /* LT Active */
 #sortable > div[id^="alt-"].sortees > div[id^="alt-"][id$=-config-content] > div.active {
-  box-shadow: 0px 0px 2px 0px rgb(222, 240, 255),
+  box-shadow: 0px 0px 2px 0px var(--obs-panel-active-box-shadow),
             0px 0px 12px 0px var(--obs-panel-active-shadow);
   border-radius: 3px;
 }
@@ -365,7 +366,7 @@ div[id^="alt-"][id$=-config-content] > div {
 /* main Inactive */
 #alt-main-config-content > div {
   background-color: var(--obs-panel);
-  box-shadow: none;
+  box-shadow: inset 0px 0px 5px 0px var(--obs-panel-disabled-shadow);
   border: var(--obs-panel-border);
   border-radius: var(--obs-element-radius);
   padding: 5px;
@@ -379,6 +380,15 @@ div[id^="alt-"][id$=-config-content] > div {
   box-shadow: 0px 0px 2px 0px rgb(222, 240, 255),
             0px 0px 12px 0px var(--obs-panel-active-shadow);
   border-radius: 3px;
+}
+.tablinks:last-child {
+  border-right: 0 !important; 
+}
+.tablinks:first-child {
+  border-left: 0 !important; 
+}
+.tablinks:not(:last-child) {
+  border-right: 0 !important;
 }
 #main-title, .alt-number-icon, .renameable {
   color: var(--obs-main-alt-color);

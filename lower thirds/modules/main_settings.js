@@ -52,12 +52,12 @@ const MainSettings = {
       if (this.accordionCollapsed) {
         return '0';
       } else if (this.showMoreCollapsed) {
-        return '46px';
+        return '56px';
       } else {
         const moreConf = this.$el.querySelector('#more-configuration');
         this.refreshHeightInternal;
 
-        return (moreConf.scrollHeight + 51) + 'px';
+        return (moreConf.scrollHeight + 61) + 'px';
       }
     }
   },
