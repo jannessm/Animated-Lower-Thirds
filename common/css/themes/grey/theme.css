@@ -1,142 +1,392 @@
 /*
   Theme: Grey
-  Updated 27.10.2023 11:25
+  Updated 04.11.2023 17:00                                                                       
 */
 :root {
-  --main-color: #fff;
-  --element-radius: 2px;
-  --obs-panel-font: normal 12px -apple-system, BlinkMacSystemFont, 'Open Sans', '.AppleSystemUIFont', Helvetica, Arial, 'MS Shell Dlg', sans-serif;
-  --obs-background: #212121;
-  --obs-panel: #2f2f2f;
-  --obs-button-background: #434343;
-  --obs-button-alt-background: #595959;
-  --obs-button-border: #233166;
-  --obs-button-hover-background: #595959;
-  --obs-button-hover-border: none;
-  --obs-button-active-background: #595959;
-  --obs-switch-active-background: #595959;
-  --obs-button-color: #fefefe;
-  --obs-button-alt-color: #bed8f2;
-  --obs-button-disable-color: #5c5959;
-  --obs-tooltip-color: #28282a;
-  --obs-select-background-focus: #191b26;
-  --obs-field-background: #434343;
-  --obs-field-background-disable: #db271a;
-  --obs-field-border-focus: #284cb8;
-  --obs-field-border-hover: #63666f;
-  --obs-panel-border: none;
-  --obs-scrollbar-color: #28282a;
-  --obs-scrollbar-thickness: 7px;
-  --obs-scrollbar-radius: 0px;
-  --obs-tab-background: #2f2f2f;
-  --obs-tab-border: none;
-  --obs-tab-active-background: #434343;
-  --obs-tab-active-border: #252a45;
-  --obs-tabs-separator: #2f2f2f;
-  --alt-preview-background: linear-gradient(135deg, #0b0b0c 0%,
-                                                    #0b0b0c 8%,
-                                                    #08080b 10%,
-                                                    #08080b 18%, 
-                                                    #0b0b0c 20%, 
-                                                    #0b0b0c 28%, 
-                                                    #08080b 30%, 
-                                                    #08080b 38%, 
-                                                    #0b0b0c 40%, 
-                                                    #0b0b0c 48%, 
-                                                    #08080b 50%, 
-                                                    #08080b 58%, 
-                                                    #0b0b0c 60%,
-                                                    #0b0b0c 68%, 
-                                                    #08080b 70%, 
-                                                    #08080b 78%, 
-                                                    #0b0b0c 80%, 
-                                                    #0b0b0c 88%, 
-                                                    #08080b 90%, 
-                                                    #08080b 98%, 
-                                                    #0b0b0c 100%);
+  --obs-main-color:                     #fff;
+  --obs-main-alt-color:                 #fff;
+  --obs-placeholder-color:              #b9b9b9;
+  --obs-disable-color:                  #828282;
+  --obs-element-radius:                 3px;
+  --obs-panel-main:                     none;
+  --obs-panel-alt-main:                 #2f2f2f;
+  --obs-panel:                          #2f2f2f;
+  --obs-panel-border:                   #212121;
+  --obs-panel-border-width:             0.5px;
+  --obs-panel-font:                     normal 12px -apple-system, BlinkMacSystemFont, 'Open Sans', '.AppleSystemUIFont', Helvetica, Arial, 'MS Shell Dlg', sans-serif;
+  --obs-background:                     #212121;
+  --obs-background-alt:                 #2f2f2f;
+  --obs-button-background:              #434343;
+  --obs-button-alt-background:          #212121;
+  --obs-button-active-background:       #434343;
+  --obs-button-hover-background:        #595959;
+  --obs-button-hover-border:            #434343;
+  --obs-button-border:                  #8cb5ff;
+  --obs-button-color:                   #fff;
+  --obs-button-alt-color:               #bed8f2;
+  --obs-button-color-disable:           #5c5959;
+  --obs-switch-active-background:       #8cb5ff;
+  --obs-tooltip-color:                  #212121;
+  --obs-select-background:              #434343;
+  --obs-select-focus-background:        #1f212a;
+  --obs-field-color:                    #fff;
+  --obs-field-background:               #434343;
+  --obs-field-disable-background:       #212121;
+  --obs-field-focus-border:             #8cb5ff;
+  --obs-field-hover-border:             #63666f;
+  --obs-field-border:                   #2f2f2f;
+  --obs-scrollbar:                      #28282a;
+  --obs-scrollbar-thickness:            7px;
+  --obs-scrollbar-radius:               0px;
+  --obs-tab-background:                 #2f2f2f;
+  --obs-tab-active-hover-background:    #434343;
+  --obs-tab-hover-background:           #434343;
+  --obs-tab-active-background:          #434343;
+  --obs-tab-border:                     none;
+  --obs-tab-hover-border:               #212121;
+  --obs-tab-active-border:              #fafafa;
+  --obs-tab-active-hover-border:        #d9d9d9;
+  --obs-tab-separator-thickness:        3px;
+  --obs-tab-appearance-margin-top:      3px;
+  --obs-tabs-separator-thickness:       2px;
+  --obs-tabs-separator-padding-bottom:  1px;
+  --obs-tabs-separator:                 #2f2f2f;
+  --obs-checkbox-border:                #a0a0a4;
+  --obs-checkbox-hover-border:          #fff;
+  --obs-checkbox-background:            #2f2f2f;
+  --obs-checkbox-color:                 #a0a0a4;
+  --obs-main-active-shadow:             #0095ff;
+  --obs-main-inactive-shadow:           #ff0d0d;
+  --obs-main-disabled-shadow:           rgb(0 0 0 / 20%);
+  --obs-panel-active-shadow:            #0095ff;
+  --obs-panel-inactive-shadow:          #ff0d0d;
+  --obs-panel-disabled-shadow:          rgb(0 0 0 / 20%);
+  --obs-main-box-shadow:                none;
+  --obs-panel-box-shadow:               none;
+  --obs-panel-inactive-box-shadow:      none;
+  --obs-panel-active-box-shadow:        none;
+  --obs-alt-preview-background:   linear-gradient(
+                                  135deg, 
+                                  #0b0b0c 0%,
+                                  #0b0b0c 8%,
+                                  #08080b 10%,
+                                  #08080b 18%, 
+                                  #0b0b0c 20%, 
+                                  #0b0b0c 28%, 
+                                  #08080b 30%, 
+                                  #08080b 38%, 
+                                  #0b0b0c 40%, 
+                                  #0b0b0c 48%, 
+                                  #08080b 50%, 
+                                  #08080b 58%, 
+                                  #0b0b0c 60%,
+                                  #0b0b0c 68%, 
+                                  #08080b 70%, 
+                                  #08080b 78%, 
+                                  #0b0b0c 80%, 
+                                  #0b0b0c 88%, 
+                                  #08080b 90%, 
+                                  #08080b 98%, 
+                                  #0b0b0c 100%
+                                  );
 }
-
+input:checked + .slider::after {
+	background-color: var(--obs-main-color);
+}
+input + .slider::after {
+	background-color: var(--obs-disable-color);
+}
+#tab-appearance .settings-inputs label > input[type="checkbox"] {
+  /* Add if not using autoprefixer */
+  -webkit-appearance: none;
+  /* Remove most all native input styles */
+  appearance: none;
+  /* For iOS < 15 */
+  background-color: var(--obs-checkbox-background);
+  /* Not removed via appearance */
+  margin: 0;
+  font-weight: normal;
+  font: var(--obs-panel-font);
+  color: var(--obs-checkbox-color);
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.5px solid var(--obs-checkbox-border);
+  border-radius: 0.15em;
+  transform: translateY(-0.075em);
+  display: grid;
+  place-content: center;
+  margin-right: 5px;
+}
+#tab-appearance .settings-inputs label > input[type="checkbox"]::before {
+  box-sizing: border-box;
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  clip-path: polygon(10% 53%, 2% 68%, 38% 100%, 100% 9%, 87% 0.17%, 34% 78%); 
+  transform: scale(0);
+  transform-origin: bottom left;
+  transition: 120ms transform ease-in-out;
+  background-color: var(--obs-checkbox-color);
+}
+#tab-appearance .settings-inputs label > input[type="checkbox"]:checked::before {
+  box-sizing: border-box;
+  transform: scale(1);
+}
+#tab-appearance .settings-inputs label > input[type="checkbox"]:focus {
+}
+#tab-appearance .settings-inputs label > input[type="checkbox"]:disabled {
+  color: var(--obs-field-disable-background);
+  cursor: not-allowed;
+}
+.ui-widget-content {
+	color: var(--obs-tooltip-color);
+}
+input::placeholder {
+  color: var(--obs-placeholder-color);
+}
+input:checked + .icon-btn:hover {
+	background: var(--obs-button-hover-background);
+}
 .panel {
   font: var(--obs-panel-font) ;
 }
-.panel-bottom label[title] {
-  color: var(--obs-tooltip-color) ;
-}
 .panel-bottom > ul > li > div {
-  visibility: hidden!important;
+  visibility: hidden !important;
 }
 .panel-bottom > ul > li.stored > div {
-  visibility: visible!important;
+  visibility: visible !important;
 }
 .panel-bottom > ul > li.stored {
   background: var(--obs-button-alt-background) ;
-  border: none; #161f41
+  border: none;
 }
 .panel-bottom > ul > li.active-slot {
   background: var(--obs-button-background) ;
   color: var(--obs-button-alt-color) ;
-  border: none;;
+  border: none;
 }
 .panel-bottom > .config-btn > input + .icon {
-  background: var(--obs-button-disable-color) ;
+  background: var(--obs-button-color-disable);
 }
 .panel-bottom > .config-btn > input:checked + .icon {
   background: var(--obs-button-color) ;
 }
 .panel-bottom > label[id^="alt-"][id$="-custom-times"] > .icon {
-  background: var(--obs-button-disable-color) ;
+  background: var(--obs-button-color-disable);
 }
 .panel-bottom > label[id^="alt-"][id$="-custom-times"].active > .icon {
-  background: var(--obs-button-color) ;
+  background: var(--obs-button-color);
 }
+#time-options {
+  padding: 5px;
+  background: var(--obs-panel-alt-main);
+}
+#main-settings {
+  background: var(--obs-panel-alt-main);
+  width:100%;
+  height: 25px;
+  border-radius: var(--obs-element-radius) var(--obs-element-radius) var(--obs-element-radius) var(--obs-element-radius); 
+}
+#main-settings.active {
+  border-radius: var(--obs-element-radius) var(--obs-element-radius) 0 0; 
+}
+#global-configuration.hidable {
+  margin-top: 0px;
+}
+#alt-panel > #alt-main-config-content > div.active,
 #alt-panel > #alt-main-config-content > div {
-  background: var(--obs-background);
-  border-radius: 3px;
+  min-height: 25px;
+  background: var(--obs-panel-main);
+  padding: 0px;
+  border-radius: var(--obs-element-radius);
+  border-width: var(--obs-panel-border-width) var(--obs-panel-border-width) var(--obs-panel-border-width) var(--obs-panel-border-width); 
+  border-style: solid;
+  border-color: var(--obs-panel-border);
+}
+[id$=-config-content] > div,
+div[id^="alt-"][id$=-config-content] > div {
+  border: var(--obs-panel-border);
+  padding: 5px;
+  margin-bottom: 15px;
+  border-radius: var(--obs-element-radius);
+  transition: background 0.5s;
+  border-width: var(--obs-panel-border-width) var(--obs-panel-border-width) var(--obs-panel-border-width) var(--obs-panel-border-width); 
+  border-style: solid;
+  border-color: var(--obs-panel-border);
+}
+#sortable > div[id^="alt-"].sortees > div[id^="alt-"][id$="-config-content"] > div > .first-edit-container > .textfields-container > input {
+  border-width: 0.5px 0px 0.5px 0.5px; 
+  border-style: solid;
+  border-color: var(--obs-field-border);
+}
+#sortable > div[id^="alt-"].sortees > div[id^="alt-"][id$="-config-content"] > div > .first-edit-container > .textfields-container > div[id^="alt-"][id$="-name-appearance"],
+#sortable > div[id^="alt-"].sortees > div[id^="alt-"][id$="-config-content"] > div > .first-edit-container > .textfields-container > div[id^="alt-"][id$="-info-appearance"] {
+  background: var(--obs-field-background);
+  border-width: 0.5px 0.5px 0.5px 0px; 
+  border-style: solid;
+  border-color: var(--obs-field-border);
 }
 #sortable > div[id^="alt-"].sortees > div[id^="alt-"][id$="-config-content"] > div {
   background: var(--obs-panel);
 }
 .panel button.active {
-	border-bottom: 2px solid var(--main-color);
+	background: var(--obs-tab-active-background);
+	border-bottom: 2px solid var(--obs-main-color);
 }
 .panel button.active:hover {
-	background: var(--obs-tab-active-background);
+	background: var(--obs-tab-active-hover-background);
 }
-.panel button.active:hover {
-	background: var(--obs-tab-active-background);
+.panel .btn-settings {
+  border: 0.5px solid var(--obs-background-alt);
 }
 .panel .btn-settings:hover {
 	background: var(--obs-button-hover-background);
+  border: 0.5px solid var(--obs-button-hover-border);
+}
+.panel .import-file-btn > label  {
+  border: 0.5px solid var(--obs-background-alt);
 }
 .panel .import-file-btn > label:hover {
 	background: var(--obs-button-hover-background);
+  border: 0.5px solid var(--obs-button-hover-border);
+}
+#add-new-font > div:hover {
+  background: var(--obs-button-hover-background);
+}
+.panel select {
+  color: var(--obs-main-color);
+	background: var(--obs-select-background);
+  border: 0.5px solid var(--obs-field-border);
+}
+.panel input {
+  color: var(--obs-field-color);
+}
+.panel input, .panel .logo-container {
+	background: var(--obs-field-background);
+  border: 0.5px solid var(--obs-field-border);
+}
+.panel input:hover, .panel select:hover, .panel .logo-container:hover {
+	background: var(--obs-field-background);
+  border: 0.5px solid var(--obs-field-hover-border);
 }
 .panel input:focus, .panel select:focus, .panel .logo-container:focus {
-	background: var(--obs-background);
-  border: 1px solid var(--obs-field-border-focus);
-  border-radius: 1px;
-}
-.panel input, .panel select, .panel .logo-container {
 	background: var(--obs-field-background);
-}
-#tab-appearance {
-  background-color: var(--obs-panel);
-  border-radius: 3px;
+  border: 0.5px solid var(--obs-field-focus-border);
 }
 #global-configuration #theme-options #theme:focus {
-  background-color: var(--obs-select-background-focus);
+  color: var(--obs-main-color);
+  background-color: var(--obs-select-focus-background);
+  border: 0.5px solid none;
+}
+.number-input input[type="number"]:disabled, .number-input button:disabled,
+.panel input:disabled {
+  color: var(--obs-disable-color);
+  background: var(--obs-field-disable-background); 
+}
+.tab {
+  padding-bottom: var(--obs-tabs-separator-padding-bottom);
+  border-bottom: var(--obs-tabs-separator-thickness) solid var(--obs-tabs-separator);
+}
+#tab-system, #tab-customs {
+  padding: 5px; 
+  margin: 0; 
+}
+#tab-tools,
+#tab-system,
+#tab-customs,
+#tab-appearance {
+  background-color: var(--obs-background-alt);
+  padding-top: 15px;
+  padding-bottom: 5px;
+  margin-top: var(--obs-tab-appearance-margin-top);
   border: none;
+  border-radius: var(--obs-element-radius) var(--obs-element-radius) var(--obs-element-radius) var(--obs-element-radius); 
+}
+.tablinks:not(:last-child) {
+  margin-right: var(--obs-tab-separator-thickness)!important;
+}
+.tablinks {
+  border-width: var(--obs-panel-border-width) var(--obs-panel-border-width) var(--obs-panel-border-width) var(--obs-panel-border-width); 
+  border-color:  var(--obs-tab-border); 
+  border-radius: var(--obs-element-radius) var(--obs-element-radius) 0 0; 
+}
+.panel button:hover,
+.tablinks:hover {
+  background: var(--obs-tab-hover-background);
+  border-width: var(--obs-panel-border-width) var(--obs-panel-border-width) var(--obs-panel-border-width) var(--obs-panel-border-width); 
+  border-color: var(--obs-tab-hover-border); 
+  border-radius: var(--obs-element-radius) var(--obs-element-radius) 0 0; 
+}
+.panel button.active,
+.tablinks.active {
+  border-width: var(--obs-panel-border-width) var(--obs-panel-border-width) var(--obs-panel-border-width) var(--obs-panel-border-width); 
+  border-color:  var(--obs-tab-border); 
+  border-radius: var(--obs-element-radius) var(--obs-element-radius) 0 0; 
+  border-bottom: 2px solid var(--obs-tab-active-border);
+}
+.panel button.active:hover,
+.tablinks.active:hover {
+  border-width: var(--obs-panel-border-width) var(--obs-panel-border-width) var(--obs-panel-border-width) var(--obs-panel-border-width); 
+  border-color:  var(--obs-tab-border); 
+  border-radius: var(--obs-element-radius) var(--obs-element-radius) 0 0; 
+  border-bottom: 2px solid var(--obs-tab-active-hover-border);
 }
 
-.tab {
-  position: relative; /* Make sure the parent element is positioned */
-  border-bottom: 2px solid var(--obs-tabs-separator);
+/* LT Inactive */
+#sortable > div[id^="alt-"].sortees > div[id^="alt-"][id$=-config-content] > div {
+  box-shadow: inset 0px 0px 5px 0px rgb(0 0 0 / 20%);
+  padding: 5px;
+  margin-bottom: 15px;
+  border-radius: 3px;
+  transition: background 0.5s;
 }
-.tab:after {
-  content: "";
-  display: block;
-  border-bottom: 1px solid var(--obs-background);
-  position: absolute;
-  bottom: 0;
-  width: 100%;
+
+/* LT Disabled */
+#sortable > div[id^="alt-"].sortees > div[id^="alt-"][id$=-config-content] > div.inactive {
+  box-shadow: 0px 0px 2px 0px rgb(255,231,231),
+            0px 0px 12px 0px var(--obs-panel-inactive-shadow);
+  border-radius: 3px;
+}
+
+/* LT Active */
+#sortable > div[id^="alt-"].sortees > div[id^="alt-"][id$=-config-content] > div.active {
+  box-shadow: 0px 0px 2px 0px rgb(222, 240, 255),
+            0px 0px 12px 0px var(--obs-panel-active-shadow);
+  border-radius: 3px;
+}
+
+/* main Inactive */
+#alt-main-config-content > div {
+  background-color: var(--obs-panel);
+  box-shadow: inset 0px 0px 5px 0px var(--obs-panel-disabled-shadow);
+  border: var(--obs-panel-border);
+  border-radius: var(--obs-element-radius);
+  padding: 5px;
+  margin-bottom: 15px;
+  transition: background 0.5s;
+  min-height: 15px;
+}
+
+/* Main Active */
+#alt-main-config-content > div.active {
+  box-shadow: 0px 0px 2px 0px rgb(222, 240, 255),
+            0px 0px 12px 0px var(--obs-panel-active-shadow);
+  border-radius: 3px;
+}
+#main-title, .alt-number-icon, .renameable {
+  color: var(--obs-main-alt-color);
+}
+.alt-number-icon {
+  float: left;
+  border-radius: 3px;
+  box-sizing: border-box;
+  color: var(--obs-main-color);;
+  width: 15px;
+  height: 15px;
+  line-height: 11px;
+  font-size: 9px;
+  font-weight: 900;
+  margin: 5px 6px;
+  text-align: center;
+  border: 2px solid var(--obs-main-alt-color);;
 }
