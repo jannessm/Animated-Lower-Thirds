@@ -13,7 +13,7 @@
 		<script>
 			let hotKeys;
 			const DEFAULT_LOGOS = Array.from({length: 10}, () => '../logos/logo.png');
-			const THEME_OPTIONS = ['acri', 'dark', 'rachni'];
+		const THEME_OPTIONS = ['acri', 'dark', 'rachni', 'grey', 'light', 'system', 'yami'];
 			const DEFAULT_FONTS = {
 				'sans-serif': ['Open Sans', 'Poppins', 'Raleway'],
 				'monospace': ['Anonymous Pro'],
@@ -160,17 +160,20 @@
 		<template id="main-settings-template">
 			<div id="alt-main-config-content">
 				<div :class="{active: active.value}">
-					<label class="switch" :class="{'switch-left': switchesLeft.value}">
-						<input id="alt-master-switch" type="checkbox" @change="$emit('switchChanged');" v-model="active.value"> <!--"checked" to active switch-->
-						<span class="slider round"></span>
-					</label>
+					<div id="main-settings"  :class="{active: !accordionCollapsed}">
+						<label id="alt-master-label" class="switch" :class="{'switch-left': switchesLeft.value}">
+							<input id="alt-master-switch-input" type="checkbox" @change="$emit('switchChanged');" v-model="active.value"> <!--"checked" to active switch-->
+							<div class="icon-btn icon" :class="{'icon-visible': active.value, 'icon-invisible': !active.value}"></div>
+						</label>
+						
+						<div id="main-title" :class="{'switch-left': switchesLeft.value}">
+							<div class="main-icon icon icon-settings"></div>
+							<div>Main settings</div>					
+						</div>
+						
+						<label class="accordion" :class="{active: !accordionCollapsed}" @click="toggleAccordion"></label>
 					
-					<div class="main-title" :class="{'switch-left': switchesLeft.value}">
-						<div class="main-icon icon icon-settings"></div>
-						<div>Main settings</div>					
 					</div>
-					
-					<label class="accordion" :class="{active: !accordionCollapsed}" @click="toggleAccordion"></label>
 					<div id="global-configuration" class="hidable" :style="{'max-height': maxHeight}">
 						<div id="time-options">
 							<div class="settings-title">Global Times</div>
@@ -273,11 +276,7 @@
 					<div :class="{active: active, inactive: inactive}">
 						<label class="switch" :class="{'switch-left': switchLeft}">
 							<input type="checkbox" @change="$emit('switchChanged')" v-model="switchOn">
-							<span class="slider round"></span>
-						</label>
-						<label :id="`alt-${index}-enable-preview`" class="config-btn preview-btn" v-show="enabledPreview">
-							<input type="checkbox" @change="$emit('switchChanged')" :id="`alt-${index}-preview`" v-model="previewOn">
-							<div class="icon-btn icon icon-search"></div>
+							<div class="icon-btn icon" :class="{'icon-invisible': !switchOn, 'icon-visible': switchOn}"></div>
 						</label>
 						<div class="drag-handle" :class="{'switch-left': switchLeft}">
 							<div class="alt-number-icon" v-show="!hiddenSlotNumbers">{{index + 1}}</div>
@@ -286,7 +285,11 @@
 								<input type='text' v-model="title.value" maxlength='40' v-show="nameIsEditable" @focusout="nameIsEditable = false">
 							</div>
 						</div>
-						<label class="accordion" @click="toggleStyleSettings()" :class="{active: showStyleSettings}"></label>
+						<label class="accordion" @click="toggleStyleSettings()" :class="{active: showStyleSettings, 'switch-left': switchLeft}"></label>
+						<label :id="`alt-${index}-enable-preview`" class="config-btn preview-btn" v-show="enabledPreview">
+							<input type="checkbox" @change="$emit('switchChanged')" :id="`alt-${index}-preview`" v-model="previewOn">
+							<div class="icon-btn icon" :class="{'icon-preview-on': previewOn, 'icon-preview-off': !previewOn}"></div>
+						</label>
 						<div :id="`style-settings-${index}`" class="hidable">
 							<div class="grid-container">
 								<div class="grid-row">
