@@ -54,6 +54,8 @@
 				"toggle-preview" : "Show/hide preview window",
 				"fonts-options" : "Add fonts from Google Fonts",
 				"default-logos" : "Change the default logos of each LT.<br>Make sure to copy the logo files into the logos folder.<br>You can use JPG, PNG, TIFF, GIF, etc.<br>With transparency or animated",
+				"eyedropper" : "Sample area for color values.",
+  				"label-eyedropper" : "Sample area for color values.",
 			};
 
 			const JSCOLOR_CONFIG = {
@@ -198,6 +200,7 @@
 								<button id="defaultTab" class="tablinks" @click="changeTab('appearance')" :class="{active: activeTab == 'appearance'}">Appearance</button>
 								<button class="tablinks" @click="changeTab('customs')" :class="{active: activeTab == 'customs'}">Customs</button>
 								<button class="tablinks" @click="changeTab('system')" :class="{active: activeTab == 'system'}">System</button>
+								<button class="tablinks" @click="changeTab('tools')" :class="{active: activeTab == 'tools'}">Tools</button>
 							</div>
 							
 							<!-- Tab content -->
@@ -261,6 +264,18 @@
 										<!-- <input type="text" id="dataInput"> -->
 										<div class="btn-settings" onclick="exportData()">Export</div>
 										<div class="btn-settings" onclick="openResetPopup()">Reset</div>
+									</div>
+								</div>
+							</div>
+							<div id="tab-tools" class="tabcontent" v-show="activeTab == 'tools'">
+								<div class="bottom-options">
+									<div class="settings-title">Color Sampler</div>
+									<div class="settings-inputs">
+										<input style="width: 70%;" class="storable" id="eyedropper" type="text" placeholder="Click to start" tabindex="1">
+										<label id="label-eyedropper" class="config-btn lock-input">
+											<div class="icon-btn icon icon-eyedropper"></div>
+										</label>
+										<label style="width: 100%; text-align: center;" id="clipboard-message"></label>
 									</div>
 								</div>
 							</div>
@@ -651,7 +666,63 @@
 				//Select text input and copy to the clipboard
 				copyText.select();
 				document.execCommand("copy");
-        	}
+        	} 
+
+			/*
+			Color Sampler:
+			https://www.kirupa.com/javascript/eyedropper_colorpicker.htm
+			*/
+			let eyedropperSampler = document.querySelector("#eyedropper");
+			let eyedropperIcon = document.querySelector(".icon-eyedropper");
+			let eyedropperMsg = document.querySelector("#clipboard-message");
+			function setup() {
+			if (window.EyeDropper === undefined) {
+			return;
+			} else {
+			// Set a default value for the input element
+			eyedropperSampler.value = "Click to start";
+			//eyedropperSampler.style.color = "0c0c0c";
+			eyedropperSampler.addEventListener("click", pickColor, false);
+			eyedropperIcon.addEventListener("click", pickColor, false);
+			}
+			}
+			setup();
+			async function pickColor(event) {
+			let eyeDropper = new EyeDropper();
+			try {
+			let pickedColor = await eyeDropper.open();
+			// Update the value of the input element
+			eyedropperIcon.style.background = pickedColor.sRGBHex;
+			eyedropperSampler.value = pickedColor.sRGBHex;
+
+			// Copy the color value to the clipboard
+			copyToClipboard(pickedColor.sRGBHex);
+			
+			} catch (error) {
+			
+			}
+			}
+			function copyToClipboard(text) {
+			const el = document.createElement("textarea");
+			el.value = text;
+			document.body.appendChild(el);
+			el.select();
+			document.execCommand("copy");
+			document.body.removeChild(el);
+
+			// Create and append a message element
+			eyedropperMsg.textContent = "Copied to clipboard!"
+			eyedropperMsg.style.color = "#0FF21C";
+			// Add a fade-in and fade-out animation
+			setTimeout(() => {
+				eyedropperMsg.style.opacity = 1;
+			}, 0);
+
+			setTimeout(() => {
+				eyedropperMsg.textContent = ""
+			}, 5000);
+			}
+
 
 		</script>
 
