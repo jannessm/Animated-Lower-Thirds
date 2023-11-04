@@ -352,6 +352,53 @@ const LowerThirdSource = {
             #lower-third-${this.index}.style-3.right > .graph-2 {
                 border-radius: var(--alt-${this.index}-corners) 0 0 var(--alt-${this.index}-corners);
             }
+
+            /* style 4 */
+            /* See: common/css/style-source.css */
+
+            /* BACKGROUND - IN animations */
+            #lower-third-${this.index}.animation-in.style-4 > .text-content {
+                animation-name: animation-style4-background, animation-style4-text1;
+                animation-duration: var(--alt-${this.index}-animation-time);
+            }
+
+            /* BACKGROUND - OUT animations */
+            #lower-third-${this.index}.animation-out.style-4 > .text-content {
+                animation-name: animation-style4-background-out;
+                animation-fill-mode: forwards;
+                animation-duration: var(--alt-${this.index}-animation-time);
+                animation-delay: 250ms;
+            }
+
+            /* TEXT ANIMATIONS (NAME / INFO) */
+            #lower-third-${this.index}.style-4 > div.text-content > div:first-child {
+                height: calc(var(--alt-${this.index}-name-size) + 1.2rem);
+                padding: 0 0.2rem 0 0;
+            }
+
+            /*  NAME BACKGROUND */
+            #lower-third-${this.index}.style-4 > div.text-content > div:first-child {
+                background: var(--alt-${this.index}-style-color-1);
+                /* opacity: var(--alt-${this.index}-background); */
+                box-sizing: border-box;
+                border: solid var(--alt-${this.index}-border-thickness);
+                border-color: var(--alt-${this.index}-style-color-3);
+                border-radius: var(--alt-${this.index}-corners);
+                box-shadow: var(--alt-${this.index}-shadows-graph);
+            }
+
+            /*  INFO BACKGROUND */
+            #lower-third-${this.index}.style-4 > div.text-content > div:nth-child(2) {
+                height: calc(var(--alt-${this.index}-info-size) + 1.2rem);
+                padding: 0 0.2rem 0 0;
+                background: var(--alt-${this.index}-style-color-2);
+                /* opacity: var(--alt-${this.index}-background); */
+                box-sizing: border-box;
+                border: solid var(--alt-${this.index}-border-thickness);
+                border-color: var(--alt-${this.index}-style-color-4);
+                border-radius: var(--alt-${this.index}-corners);
+                box-shadow: var(--alt-${this.index}-shadows-graph);
+            }
             `;
         }
     }
