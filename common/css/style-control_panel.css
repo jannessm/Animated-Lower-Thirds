@@ -18,7 +18,7 @@ body.browser-source.lower-thirds{
 
 .panel {
 	background: var(--obs-background);
-	color: var(--main-color);
+	color: var(--obs-main-color);
 	font:normal 12px -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 	max-width:100%;
   /*transform: scale(var(--interface-size));
@@ -41,7 +41,7 @@ body.browser-source.lower-thirds{
 .panel::-webkit-scrollbar-thumb, .panel textarea::-webkit-scrollbar-thumb {
 	border-radius: var(--obs-scrollbar-radius);
   border: solid 0px var(--obs-background);
-  background-color: var(--obs-scrollbar-color);
+  background-color: var(--obs-scrollbar);
   margin: 3px 0;
   padding: 3px 0;
 }
@@ -62,9 +62,10 @@ body.browser-source.lower-thirds{
 
 /*Main settings panel*/
 #alt-main-config-content > div {
+  background-color: var(--obs-panel);
   box-shadow: inset 0px 0px 5px 0px rgb(0 0 0 / 20%);
   border: var(--obs-panel-border);
-  border-radius: var(--element-radius);
+  border-radius: var(--obs-element-radius);
   padding: 5px;
   margin-bottom: 15px;
   transition: background 0.5s;
@@ -75,13 +76,25 @@ body.browser-source.lower-thirds{
               0px 0px 12px 0px rgb(0,149,255);
   border-radius: 3px;
 }
-.main-title{
+#main-title{
   width: 275px;
   position: absolute;
+  padding: 5px 5px 0px 5px; /* Top Right Bottom Left */
 }
-.main-title.switch-left {
+#main-title.switch-left {
   margin-left: 30px;
 }
+#main-title + label {
+  padding: 5px 5px 0px 0px;/* Top Right Bottom Left */
+}
+
+[id$=-config-content] > div > label.accordion {
+  padding: 0px 5px 0px 0px;/* Top Right Bottom Left */
+}
+[id$=-config-content] > div > label.accordion.switch-left {
+  padding: 0px 0px 0px 0px;/* Top Right Bottom Left */
+}
+
 .main-icon {
   float: left;
   box-sizing: border-box;
@@ -92,7 +105,7 @@ body.browser-source.lower-thirds{
   margin: 0px 6px 0px 0px;
 }
 .main-icon.icon.icon-settings{
-  background-color: var(--main-color);
+  background-color: var(--obs-main-color);
 }
 #alt-main-config-content > div i.fas {
   margin: 0px;
@@ -117,7 +130,7 @@ body.browser-source.lower-thirds{
   margin-bottom: 5px;
 }
 #global-configuration #theme-options #theme {
-  width: 100%;
+  width: 95%;
   text-transform: capitalize;
 }
 .settings-title{
@@ -176,7 +189,7 @@ body.browser-source.lower-thirds{
   margin: 1px 5px 2px;
   display: block;
   position: relative;
-  background-color: var(--main-color);
+  background-color: var(--obs-main-color);
   width: 12px;
   height: 12px;
 }
@@ -199,7 +212,7 @@ body.browser-source.lower-thirds{
   float: left;
   border-radius: 3px;
   box-sizing: border-box;
-  color: var(--main-color);
+  color: var(--obs-main-color);
   width: 15px;
   height: 15px;
   line-height: 11px;
@@ -207,18 +220,26 @@ body.browser-source.lower-thirds{
   font-weight: 900;
   margin: 5px 6px;
   text-align: center;
-  border: 2px solid var(--main-color);
+  border: 2px solid var(--obs-main-color);
 }
 
 #add-new-font div {
   margin: 4px 3px 4px 5px;
-  background-color: var(--main-color);
+  background-color: var(--obs-main-color);
   cursor: pointer;
 }
 #add-new-font div:hover {
   background-color: #ffffff;
 }
-
+#alt-master-label {
+  margin: 0px 5px 0px 0px;/* Top Right Bottom Left */
+}
+#alt-master-label.switch-left {
+  margin: 0px 0px 0px 5px;/* Top Right Bottom Left */
+}
+#time-options {
+  padding: 5px;
+}
 /*********************/
 
 .more {
@@ -232,7 +253,7 @@ body.browser-source.lower-thirds{
   float: right;
   margin: 2px 0px 2px 1px;
   transition: transform 0.2s;
-  background-color: var(--main-color);
+  background-color: var(--obs-main-color);
 }
 .more.active div {
   transform: rotate(180deg);
@@ -295,12 +316,12 @@ body.browser-source.lower-thirds{
   border: 1px solid #666;
 }
 .panel-bottom > ul > li.active-slot {
-  background: var(--main-color);
-  border: 1px solid var(--main-color);
+  background: var(--obs-main-color);
+  border: 1px solid var(--obs-main-color);
 }
 .panel-bottom > ul > li.custom-logo::before {
   content: '';
-  background-color: var(--main-color);
+  background-color: var(--obs-main-color);
   width: 2px;
   height: 2px;
   display: block;
@@ -316,7 +337,7 @@ body.browser-source.lower-thirds{
 }
 
 @keyframes blinker-white {  
-  0% { background-color: var(--main-color); border: 1px #666; }
+  0% { background-color: var(--obs-main-color); border: 1px #666; }
   50% { background-color: #666; border: 1px solid #666; }
 }
 
@@ -324,7 +345,7 @@ body.browser-source.lower-thirds{
   width: 45px !important;
   height: 15px !important;
   border: none !important;
-  border-radius: var(--element-radius) !important;
+  border-radius: var(--obs-element-radius) !important;
   padding: 3px !important;
   float: right;
   font-size: 9px !important;
@@ -348,7 +369,7 @@ body.browser-source.lower-thirds{
   width: 45px !important;
   height: 15px !important;
   border: none !important;
-  border-radius: var(--element-radius) !important;
+  border-radius: var(--obs-element-radius) !important;
   padding: 3px !important;
   font-size: 9px !important;
   transition: 0.1s !important;
@@ -371,7 +392,7 @@ body.browser-source.lower-thirds{
   margin: 1px;
 }
 .panel-bottom > .clean > .icon {
-    background-color: var(--main-color);
+    background-color: var(--obs-main-color);
 }
 .panel-bottom > .clean > .icon:hover {
   background-color: #ffffff;
@@ -381,6 +402,9 @@ body.browser-source.lower-thirds{
   height: 15px;
   margin: 1px;
   line-height: 0;
+}
+div[id^="alt-"][id$=-config-content] > div > label.switch > .icon-btn {
+  margin: 0px;
 }
 .panel-bottom > label > .icon-btn {
   margin: 0px;
@@ -448,10 +472,10 @@ label[id$=-custom-times] i.fas {
   color: #666666;
 }
 label[id$=-custom-times].active > .icon-btn {
-  background-color: var(--main-color);
+  background-color: var(--obs-main-color);
 }
 label[id$=-custom-times] > .icon-btn.active {
-  background-color: var(--main-color);
+  background-color: var(--obs-main-color);
 }
 
 
@@ -459,77 +483,27 @@ label[id$=-custom-times] > .icon-btn.active {
 /*The switch-the box around the slider*/
 .panel label.switch {
   margin: 0px;
-  top: 1px;
 }
 .switch {
   position: relative;
-  width: 21px;
-  height: 13px;
+  width: 20px;
+  height: 20px;
   float: right;
 }
 .switch.switch-left {
   float: left;
 }
-label i.fas {
-    font-size: 15px;
-    margin: 0 6px 0 2px;
-    position: relative;
+/* Add a class to target the checkbox input and hide it */
+label.switch input[type="checkbox"] {
+  display: none;
 }
-i.fas {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-  margin: 0;
-}
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: var(--obs-field-background);
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 9px;
-  width: 9px;
-  left: 2px;
-  bottom: 2px;
-  background-color: var(--main-color);
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-input:checked + .slider {
-  background-color: var(--obs-switch-active-background);
-}
-/* input:focus + .slider {
-  box-shadow: 0 0 1px var(--obs-switch-active-background);
-} */
-input:checked + .slider:before {
-  -webkit-transform: translateX(8px);
-  -ms-transform: translateX(8px);
-  transform: translateX(8px);
-  background-color: #fff;
-}
-.slider.round {
-  border-radius: 14px;
-}
-.slider.round:before {
-  border-radius: 50%;
-}
+input + .slider.icon-invisible::after {
 
+  
+}
+input:checked + .slider.icon-visible::after {
+
+}
 .panel label {
     display: inline-block;
 }
@@ -542,7 +516,7 @@ input:checked + .slider:before {
 	display:block;
 	width:100%;
   height: 23px;
-	border-radius: var(--element-radius);
+	border-radius: var(--obs-element-radius);
 	background: var(--obs-field-background);
 	color: #d2d2d2;
 	font-size: 1em;
@@ -557,7 +531,7 @@ input:checked + .slider:before {
 	margin:0 0 5px;
 	border: var(--obs-field-border);
 	display:block;
-	border-radius: var(--element-radius);
+	border-radius: var(--obs-element-radius);
 	background: var(--obs-field-background);
 	color: #d2d2d2;
   font-size: 1em;
@@ -580,7 +554,7 @@ input[id$=-name], input[id$=-info] {
 [id$=-name-appearance], [id$=-info-appearance] {
     float: right;
     background-color: var(--obs-field-background);
-    border-radius: 0 var(--element-radius) var(--element-radius) 0;
+    border-radius: 0 var(--obs-element-radius) var(--obs-element-radius) 0;
     border: var(--obs-field-border);
     border-left: 0;
     box-sizing: border-box;
@@ -599,7 +573,7 @@ input[id$=-name], input[id$=-info] {
 .fill-color-appearance,
 .border-color-appearance {
     background-color: var(--obs-field-background);
-    border-radius: var(--element-radius) !important;
+    border-radius: var(--obs-element-radius) !important;
     border: var(--obs-field-border) !important;
     box-sizing: border-box;
     height: 23px !important;
@@ -614,7 +588,7 @@ input[id$=-name], input[id$=-info] {
 }
 .tool-title {
     line-height: 14px;
-    font-size: 9px;
+    font-size: 8px;
     text-transform: uppercase;
     font-weight: 600;
     margin: 4px 0px 4px 0px;
@@ -733,7 +707,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .number-input button:hover:before,
 .number-input button:hover:after {
-  background-color: var(--main-color);
+  background-color: var(--obs-main-color);
 }
 .number-input button:before,
 .number-input button:after {
@@ -771,7 +745,7 @@ input[type=number]::-webkit-outer-spin-button {
 .input-icon {
   order: 0;
   display: inline-flex;
-  background-color: var(--main-color)!important;
+  background-color: var(--obs-main-color)!important;
   margin: 4px;
 }
 .input-icon > .fas {
@@ -821,7 +795,7 @@ label.config-btn.small {
     cursor: pointer;
 }
 input:checked + .icon-btn {
-  background-color: var(--main-color);
+  background-color: var(--obs-main-color);
 }
 input:checked + .icon-btn:hover {
   background-color: #ffffff;
@@ -855,7 +829,7 @@ input:disabled + .icon-btn {
   background-color: #808080;
 }
 .align-toggle input:checked + label > div {
-  background-color: var(--main-color);
+  background-color: var(--obs-main-color);
 }
 .align-toggle input:checked + label > div:hover {
   background-color: #ffffff;
@@ -876,7 +850,7 @@ select {
   padding: 0.4em;
   font-size: 1em;
   border: var(--obs-field-border);
-  border-radius: var(--element-radius);
+  border-radius: var(--obs-element-radius);
   height: 23px;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -937,7 +911,7 @@ select[id$=-font] {
 }
 
 #alt-preview > label > .icon.icon-search {
-  background-color: var(--main-color);
+  background-color: var(--obs-main-color);
 }
 
 #alt-preview.active {
@@ -957,7 +931,7 @@ select[id$=-font] {
   transition: transform 0.2s;
   width: 13px;
   height: 13px;
-  background-color: var(--main-color);
+  background-color: var(--obs-main-color);
 }
 #toggle-preview.active div{
     transform: rotate(-180deg);
@@ -969,15 +943,15 @@ select[id$=-font] {
 .embed-container iframe {
   /*height: 203px;
   width: 360px;
-  border-radius: var(--element-radius);
+  border-radius: var(--obs-element-radius);
   border: var(--obs-field-border);
-  background: var(--alt-preview-background);
+  background: var(--obs-alt-preview-background);
   box-shadow: inset 0px 0px 30px 10px rgb(0 0 0 / 20%);*/
   height: 179px;
   width: 318px;
-  border-radius: var(--element-radius);
+  border-radius: var(--obs-element-radius);
   border: var(--obs-field-border);
-  background: var(--alt-preview-background);
+  background: var(--obs-alt-preview-background);
   box-shadow: inset 0px 0px 30px 10px rgb(0 0 0 / 20%);
 }
 
@@ -1013,7 +987,7 @@ select[id$=-font] {
 
 .ui-sortable-placeholder {
   visibility: visible!important;
-  border: 2px dashed var(--obs-field-background-disable);
+  border: 2px dashed var(--obs-field-disable-background);
   margin-bottom: 11px;
 }
 
@@ -1101,14 +1075,14 @@ i.alt-icon {
 }
 
 .delete-font div {
-  background-color: var(--main-color);
+  background-color: var(--obs-main-color);
 }
 .delete-font div:hover {
   background-color: #ffffff;
 }
 .slot-number {
   visibility: visible!important;
-  color: var(--obs-field-background);
+  color: var(--obs-button-color);
   font-weight: 700;
   width: 15px;
   height: 15px;
@@ -1123,10 +1097,10 @@ i.alt-icon {
   display: none;
 }
 .stored .slot-number {
-  color: var(--main-color);
+  color: var(--obs-main-color);
 }
 .stored.active-slot .slot-number {
-  color: var(--obs-field-background);
+  color: var(--obs-button-alt-color);
 }
 
 .panel-bottom > ul > li .tooltiptext {
@@ -1134,7 +1108,7 @@ i.alt-icon {
   font-size: 11px;
   max-width: 130px;
   background-color: var(--obs-field-background);
-  color: var(--main-color);
+  color: var(--obs-main-color);
   text-align: center;
   border-radius: 3px;
   padding: 5px 8px;
@@ -1183,7 +1157,7 @@ i.alt-icon {
 .ui-widget-content {
 	border: 1px solid #c5c5c5;
 	background: #ffffff;
-	color: var(--obs-field-background);
+	color: #1f1e1f;
 }
 .ui-widget-shadow {
   -webkit-box-shadow: 2px 2px 5px rgb(0 0 0 / 30%);
@@ -1247,7 +1221,7 @@ i.alt-icon {
   line-height: 30px;
   text-align: center;
   background: var(--obs-button-background);
-  color: var(--main-color);
+  color: var(--obs-main-color);
   font-size: 12px;
   text-transform: Uppercase;
   font-weight: 600;
@@ -1281,7 +1255,7 @@ i.alt-icon {
   line-height: 26px;
   text-align: center;
   background: var(--obs-button-background);
-  color: var(--main-color);
+  color: var(--obs-main-color);
   font-size: 12px;
   border-radius: 3px;
   cursor: pointer;
@@ -1301,7 +1275,7 @@ i.alt-icon {
   line-height: 26px;
   text-align: center;
   background: var(--obs-button-background);
-  color: var(--main-color);
+  color: var(--obs-main-color);
   font-size: 12px;
   text-transform: Uppercase;
   font-weight: 600;
@@ -1335,7 +1309,7 @@ i.alt-icon {
   line-height: 26px;
   text-align: center;
   background: var(--obs-button-background);
-  color: var(--main-color);
+  color: var(--obs-main-color);
   font-size: 12px;
   font-weight: 600;
   border-radius: 3px;
@@ -1421,27 +1395,30 @@ i.alt-icon {
 .logo-default {
   margin-left: 1px;
 }
-
 .divider {
   height: 1px;
-  background-color: var(--obs-scrollbar-color);
+  background-color: var(--obs-scrollbar);
   width: 100%;
   margin: 5px 0 10px;
 }
-
-
 input.locked + .icon-btn {
   pointer-events: none;
   user-select: none;
-  background-color: var(--main-color);
+  background-color: var(--obs-main-color);
 }
-
+#tab-appearance {
+  padding-top: 10px;
+  margin-top: 5px;
+}
+#tab-system, #tab-customs {
+  padding: 5px;
+  margin: 5px; 
+}
 .tab {
   display: flex;
   justify-content: space-between;
   margin-top: 5px;
   border-bottom: 1px solid var(--obs-tabs-separator);
-  margin-bottom: 10px;
 }
 .tablinks {
   cursor: pointer;
@@ -1450,7 +1427,7 @@ input.locked + .icon-btn {
   margin: 0px!important;
   border-radius: 3px 3px 0 0;
   font: unset;
-  color: var(--main-color);
+  color: var(--obs-main-color);
   background: var(--obs-tab-background);
   border: 1px solid var(--obs-tab-border);
   border-bottom: none;
@@ -1466,7 +1443,7 @@ input.locked + .icon-btn {
 #lt-btns {
   display: flex;
   justify-content: space-evenly;
-  color: var(--main-color);
+  color: var(--obs-main-color);
 }
 #lt-btns div {
  margin: 20px;
