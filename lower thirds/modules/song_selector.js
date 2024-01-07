@@ -11,7 +11,7 @@ const SongSelector = {
     return props;
   },
   mounted() {
-    fetch('http://songs.magnusso.nz')
+    fetch('http://songs.magnusso.nz/api/')
     .then(response => {
       if (!response.ok) {
         throw new Error("HTTP error " + response.status);
