@@ -12,7 +12,7 @@ const App = {
     };
 
     const storables = {
-      activeTheme: ['alt2-theme', 'dark'],
+      activeTheme: ['slt-theme', 'dark'],
     };
 
     // prepare properties

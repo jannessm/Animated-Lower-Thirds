@@ -61,7 +61,7 @@ body.browser-source.lower-thirds{
 }
 
 /*Main settings panel*/
-#alt-main-config-content > div {
+#slt-main-config-content > div {
   box-shadow: inset 0px 0px 5px 0px rgb(0 0 0 / 20%);
   border: var(--obs-panel-border);
   border-radius: var(--element-radius);
@@ -70,7 +70,7 @@ body.browser-source.lower-thirds{
   transition: background 0.5s;
   min-height: 15px;
 }
-#alt-main-config-content > div.active {
+#slt-main-config-content > div.active {
   box-shadow: 0px 0px 2px 0px rgb(222, 240, 255),
               0px 0px 12px 0px rgb(0,149,255);
   border-radius: 3px;
@@ -95,7 +95,7 @@ body.browser-source.lower-thirds{
 .main-icon.icon.icon-settings{
   background-color: var(--main-color);
 }
-#alt-main-config-content > div i.fas {
+#slt-main-config-content > div i.fas {
   margin: 0px;
 }
 
@@ -138,7 +138,7 @@ body.browser-source.lower-thirds{
   margin-left: 4px!important;
   margin-bottom: 4px;
 }
-.alt-time-options > .settings-inputs input {
+.slt-time-options > .settings-inputs input {
   margin: 0;
 }
 
@@ -196,7 +196,7 @@ body.browser-source.lower-thirds{
     overflow: hidden;
 }
 
-.alt-number-icon {
+.slt-number-icon {
   float: left;
   border-radius: 3px;
   box-sizing: border-box;
@@ -900,7 +900,7 @@ select[id$=-font] {
   margin-bottom: 5px;
 }
 .grid-row,
-.alt-time-options {
+.slt-time-options {
   margin-top: 5px;
   display: inline-flex;
   justify-content: space-between;
@@ -919,7 +919,7 @@ select[id$=-font] {
 **           PREVIEW            **
 *********************************/
 
-#alt-preview {
+#slt-preview {
   position: fixed;
   box-sizing: border-box;
   bottom: 0px;
@@ -937,14 +937,14 @@ select[id$=-font] {
   left: 8px;
 }
 
-#alt-preview > label > .icon.icon-search {
+#slt-preview > label > .icon.icon-search {
   background-color: var(--main-color);
 }
 
-#alt-preview.active {
+#slt-preview.active {
   bottom: -190px;
 }
-#alt-preview.hide {
+#slt-preview.hide {
   display: none;
 }
 
@@ -972,13 +972,13 @@ select[id$=-font] {
   width: 360px;
   border-radius: var(--element-radius);
   border: var(--obs-field-border);
-  background: var(--alt-preview-background);
+  background: var(--slt-preview-background);
   box-shadow: inset 0px 0px 30px 10px rgb(0 0 0 / 20%);*/
   height: 179px;
   width: 318px;
   border-radius: var(--element-radius);
   border: var(--obs-field-border);
-  background: var(--alt-preview-background);
+  background: var(--slt-preview-background);
   box-shadow: inset 0px 0px 30px 10px rgb(0 0 0 / 20%);
 }
 
@@ -1033,7 +1033,7 @@ select[id$=-font] {
   height: 14px;
 }
 
-i.alt-icon {
+i.slt-icon {
   font-size: 15px;
   margin: 0 6px 0 7px;
   position: relative;

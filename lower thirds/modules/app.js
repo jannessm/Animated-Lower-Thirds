@@ -17,8 +17,8 @@ const App = {
         Object.assign(props['fonts'], DEFAULT_FONTS);
 
         const storables = {
-            lts: ['alt2-sort-order', [0]],
-            songs: ['alt2-songs-order', [0]],
+            lts: ['slt-sort-order', [0]],
+            songs: ['slt-songs-order', [0]],
         };
     
         // prepare properties
@@ -72,7 +72,7 @@ const App = {
             }
         },
         updateSortOrder() {
-            const sorted = $('#sortable').sortable("toArray").map(val => parseInt(val.replace('alt-', '')));
+            const sorted = $('#sortable').sortable("toArray").map(val => parseInt(val.replace('slt-', '')));
             this.lts.value = sorted;
         },
         checkSwitches(send = true) {

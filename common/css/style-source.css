@@ -453,19 +453,19 @@ body {
 	animation-name: animation-center-text-2;
 }
 
-.alt {
+.slt {
     display: flex;
     align-items: center;
     justify-content: center;
     position: absolute;
     transition: left 0.1s, bottom 0.1s, right 0.1s;
 }
-.alt > .text-content {
+.slt > .text-content {
     order: 2;
     display: flex;
     flex-direction: column;
 }
-.alt > .text-content > .text-mask {
+.slt > .text-content > .text-mask {
     overflow: hidden;
     transition: height 0.1s;
 }
@@ -674,7 +674,7 @@ body {
 }
 
 /*****Style 4*****/
-.style-4.alt {
+.style-4.slt {
 	width: 100%;
 	left: 0 !important;
 	bottom: 0 !important;
@@ -690,13 +690,9 @@ body {
 	z-index: 1;
 	margin: 0;
 }
-.style-4 > .logo.no-logo {
-	min-width: 5.5em;
-	min-height: 5.5em;
-}
 
 .style-4 > .graph-1 {
-	background: var(--alt-0-style-color-1);
+	background: var(--slt-0-style-color-1);
 	position: absolute;
 	left: 0;
 	bottom: 0;
@@ -706,7 +702,7 @@ body {
 }
 
 .style-4 > .graph-2 {
-	background: var(--alt-0-style-color-2);
+	background: var(--slt-0-style-color-2);
 	position: absolute;
 	left: 0;
 	bottom: 0;
@@ -814,41 +810,41 @@ body {
 .style-1 > .graph-1 {
 	align-self: start;
 }
-.alt > div.text-content > div:nth-child(2) div {
+.slt > div.text-content > div:nth-child(2) div {
     line-height: 1.25em;
 }
-.alt > div.text-content > div:nth-child(2) {
+.slt > div.text-content > div:nth-child(2) {
 	height: auto!important;
 }
-.alt.style-1.left > .text-content {
+.slt.style-1.left > .text-content {
 	margin-right: 1em;
 } 
-.alt.style-1.right > .text-content {
+.slt.style-1.right > .text-content {
 	margin-left: 1em;
 } */
 
 
 /*Uncomment to invert vertical position*/
 /* #lower-third-0 {
-	top: var(--alt-0-margin-v);
+	top: var(--slt-0-margin-v);
 	bottom: unset!important;
 }
 #lower-third-1 {
-	top: var(--alt-1-margin-v);
+	top: var(--slt-1-margin-v);
 	bottom: unset!important;
 }
 #lower-third-2 {
-	top: var(--alt-2-margin-v);
+	top: var(--slt-2-margin-v);
 	bottom: unset!important;
 }
 #lower-third-3 {
-	top: var(--alt-3-margin-v);
+	top: var(--slt-3-margin-v);
 	bottom: unset!important;
 } */
 
 /*FIX HEIGHT LINE ISSUES AND MULTIPLE LINES*/
-/* .alt > div.text-content > div:first-child, .alt > div.text-content > div:nth-child(2) {height: auto!important;}
-.alt > div.text-content > div:first-child div, .alt > div.text-content > div:nth-child(2) div {line-height: 1.25em;} */
+/* .slt > div.text-content > div:first-child, .slt > div.text-content > div:nth-child(2) {height: auto!important;}
+.slt > div.text-content > div:first-child div, .slt > div.text-content > div:nth-child(2) div {line-height: 1.25em;} */
 
 
 /***Con esto no puedo quitar el fondo***/
@@ -862,9 +858,9 @@ body {
 	display: flex;
 }
 #lower-third-0.style-3 > .logo {
-    background: var(--alt-0-style-color-1);
-	box-shadow: var(--alt-0-shadows);
-	opacity: var(--alt-0-background);
+    background: var(--slt-0-style-color-1);
+	box-shadow: var(--slt-0-shadows);
+	opacity: var(--slt-0-background);
 } */
 /*repetir */
 
@@ -875,7 +871,7 @@ body {
 
 
 /*Uncomment to full with background in the style 1*/
-/* .style-1.alt {
+/* .style-1.slt {
 	width: 105%;
 }
 .style-1.left {
