@@ -61,7 +61,7 @@ const App = {
       this.order.splice(0, Infinity, ...sorted);
     },
     loadSong() {
-      fetch('http://songs.magnusso.nz/api/?path=' + this.songPath).then(res => {
+      fetch('https://songs.magnusso.nz/api/?path=' + this.songPath).then(res => {
         if (res.ok) {
           res.json()
             .then(json => {
