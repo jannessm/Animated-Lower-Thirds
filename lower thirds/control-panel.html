@@ -79,7 +79,7 @@
 		<script src="./modules/app.js"></script>
 		<script src="../common/js/jquery.js"></script>
 		<script src="../common/js/jscolor.js"></script>
-		<script src="../common/js/hotkeys.js"></script>
+		<!-- <script src="../common/js/hotkeys.js"></script> -->
 		<script src="../common/js/jquery-ui.js"></script>
 	</head>
 	<body class="lower-thirds-panel panel">
@@ -825,22 +825,22 @@
 			const app = createApp(App).mount('#slt-panel');
 
 			//Reload the hotjeys.js file updated by the LUA script
-			setInterval(() => {
-			    const lastChange = JSON.parse(JSON.stringify(hotKeys));
+			// setInterval(() => {
+			//     const lastChange = JSON.parse(JSON.stringify(hotKeys));
 
-				setTimeout(() => {
-					src = '../common/js/hotkeys.js';
-					$('script[src="' + src + '"]').remove();
-					var head= document.getElementsByTagName('head')[0];
-					var script= document.createElement('script');
-					script.src= src;
-					head.appendChild(script);
+			// 	setTimeout(() => {
+			// 		src = '../common/js/hotkeys.js';
+			// 		$('script[src="' + src + '"]').remove();
+			// 		var head= document.getElementsByTagName('head')[0];
+			// 		var script= document.createElement('script');
+			// 		script.src= src;
+			// 		head.appendChild(script);
 
-					if (lastChange.change < hotKeys.change) {
-						app.handleHotKeys(hotKeys);
-					}
-				}, 100);
-			}, 100);
+			// 		if (lastChange.change < hotKeys.change) {
+			// 			app.handleHotKeys(hotKeys);
+			// 		}
+			// 	}, 100);
+			// }, 100);
 
 			function openResetPopup() {
 				document.getElementById("reset-all").classList.remove("hide");
