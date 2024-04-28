@@ -113,10 +113,10 @@
                 },
                 timer() {
                     Object.values(this.$refs.lt).forEach(lt => {
-                        if (!lt.switchOn) {
-                            lt.activeTimer = 0;
-                            lt.inactiveTimer = 0;
-                        } else {
+                        // if (!lt.switchOn) {
+                        //     lt.activeTimer = 0;
+                        //     lt.inactiveTimer = 0;
+                        // } else {
                             if (lt.active) {
                                 if (lt.activeTimer < lt.activeTime) {
                                     lt.activeTimer++;
@@ -136,7 +136,7 @@
                                     this.runAnimations(lt);
                                 }
                             }
-                        }
+                        // }
                         this.send();
                     });
                 },
