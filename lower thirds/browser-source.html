@@ -117,28 +117,23 @@
                 },
                 timer() {
                     Object.values(this.$refs.lt).forEach(lt => {
-                        if (!lt.switchOn) {
-                            lt.activeTimer = 0;
-                            lt.inactiveTimer = 0;
-                        } else {
-                            if (lt.active) {
-                                if (lt.activeTimer < lt.activeTime) {
-                                    lt.activeTimer++;
-                                } else {
-                                    lt.active = false;
-                                    lt.activeTimer = 0;
-                                    lt.inactiveTimer = 0;
-                                    this.runAnimations(lt);
-                                }
+                        if (lt.active) {
+                            if (lt.activeTimer < lt.activeTime) {
+                                lt.activeTimer++;
                             } else {
-                                if (lt.inactiveTimer < lt.inactiveTime) {
-                                    lt.inactiveTimer++;
-                                } else {
-                                    lt.hide = false;
-                                    lt.active = true;
-                                    lt.inactiveTimer = 0;
-                                    this.runAnimations(lt);
-                                }
+                                lt.active = false;
+                                lt.activeTimer = 0;
+                                lt.inactiveTimer = 0;
+                                this.runAnimations(lt);
+                            }
+                        } else {
+                            if (lt.inactiveTimer < lt.inactiveTime) {
+                                lt.inactiveTimer++;
+                            } else {
+                                lt.hide = false;
+                                lt.active = true;
+                                lt.inactiveTimer = 0;
+                                this.runAnimations(lt);
                             }
                         }
                         this.send();
