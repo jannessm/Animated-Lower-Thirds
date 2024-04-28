@@ -20,8 +20,9 @@ const LowerThirdSource = {
 
             activeTimer: ref(0),
             inactiveTimer: ref(0),
+            updateTimer: null,
 
-            readables: []
+            readables: [],
         };
 
         const readables = {
@@ -149,18 +150,20 @@ const LowerThirdSource = {
             }
         },
         updateSlot(slotValues, force=false) {
-            if (force) {
+            // update Slot if song text is changed (force) only if no animation was triggered (this.updateTimer)
+            if (force && !this.updateTimer) {
                 this.name = slotValues.name;
                 this.info = slotValues.info;
                 this.logoSrc = slotValues.logoSrc;
             } else if (this.switchOn) {
                 // wait until animation is done => then update
-                const updateTimer = setInterval(() => {
+                this.updateTimer = setInterval(() => {
                     if (this.inactiveTimer > this.animationTime) {
                         this.name = slotValues.name;
                         this.info = slotValues.info;
                         this.logoSrc = slotValues.logoSrc;
-                        clearInterval(updateTimer);
+                        clearInterval(this.updateTimer);
+                        this.updateTimer = null;
                     }
                 }, 500);
             }
